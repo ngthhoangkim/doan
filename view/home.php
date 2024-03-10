@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="img/trangsuc.png" alt="">
+                            <img class="img-fluid" src="public/img/trangsuc.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -28,7 +28,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="img/nhan.png" alt="">
+                            <img class="img-fluid" src="public/img/nhan.png" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -45,7 +45,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="img/vongtay.jpg" alt="">
+                            <img class="img-fluid" src="public/img/vongtay.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -66,8 +66,6 @@
             <i class="fas fa-chevron-right"></i>
         </a>
     </div>
-    <!-- End Banner Hero -->
-
 
     <!-- bestseller-->
     <section class="container py-5">
@@ -78,15 +76,15 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="img/bestseller1.png" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="public/img/bestseller1.png" class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">Lắc tay cỏ 4 lá may mắn</h5>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="img/bestseller2.png" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="public/img/bestseller2.png" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Vòng cổ trái tim</h2>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="img/bestseller3.png" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="public/img/bestseller3.png" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Nhẫn bạc</h2>
             </div>
         </div>
@@ -95,9 +93,9 @@
 </body>
 
 <!-- js -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/templatemo.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="public/js/jquery-1.11.0.min.js"></script>
+    <script src="public/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/templatemo.js"></script>
+    <script src="public/js/custom.js"></script>
 <!-- end js -->

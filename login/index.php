@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,48 +7,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="img/logotieude.png"> <!--chỉnh logo trên tiêu đề  -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
+    <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
 
-    <link rel="stylesheet" href="css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="../public/css/login.css">
 
     <!-- font chữ: Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="../public/css/fontawesome.min.css">
 </head>
-<body>
     <div class="login">
         <h2 class="h2 text-success"><b>Đăng nhập / Đăng ký</b></h2>
         <div class="container" id="container">
+            <!-- đăng ký  -->
             <div class="form-container sign-up-container">
-                <form action="#">
+                 <form action="./login.php?act = reg" method="Post" autocomplete="off"> <!-- tự action lại bản thân của nó  -->
                     <h1 class="h2 text-success"><b>Tạo tài khoản</b></h1>
                     <div class="social-container">
                         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     </div>
-                    <input type="text" placeholder="Username" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Nhập lại password"/>
-                    <button>Đăng ký</button>
+                    <input type="text" name="username" placeholder="Username" >
+                    <input type="text" name="email" placeholder="Email" >
+                    <input type="text" name="password" placeholder="Password" >
+                    <input type="text" name="repassword" placeholder="Nhập lại password"> 
+                    <button type="submit" name="dangky">Đăng ký</button>
                 </form>
             </div>
+            <!-- đăng nhập -->
             <div class="form-container sign-in-container">
-                <form action="#">
+                <form action="index.php?act=login" method="post">
                     <h1 class="h1 text-success"><b>Đăng nhập</b></h1>
                     <div class="social-container">
                         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     </div>
-                    <input type="email" placeholder="Username" />
-                    <input type="password" placeholder="Password" />
+                    <input type="text" name="username" placeholder="Username"  />
+                    <input type="text" name="password" placeholder="Password" />
                     <a href="#">Quên mật khẩu</a>
-                    <button>Đăng nhập</button>
-                </form>
+                    <input type="submit" name="" value="ĐĂNG NHẬP"></input>
+                 </form>
             </div>
+               
+                
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
@@ -79,3 +82,4 @@
         container.classList.remove('right-panel-active');
     });
 </script>
+
