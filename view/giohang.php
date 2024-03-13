@@ -1,4 +1,6 @@
 <head>
+	<link rel="stylesheet" href="../giohang.css">
+
 	<style>
 		html {
 			font-size: 62.5%;
@@ -313,6 +315,30 @@
 				font-size: 16px;
 			}
 		}
+
+
+
+		/* --- ĐẶT HÀNG --- */
+		.payment-btn {
+			background-color: #4CAF50; /* Màu nền */
+			border: none; /* Không có viền */
+			color: white; /* Màu chữ */
+			padding: 15px 32px; /* Kích thước nút */
+			text-align: center; /* Căn giữa văn bản */
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			transition-duration: 0.4s; /* Hiệu ứng chuyển đổi */
+			cursor: pointer; /* Con trỏ tay khi di chuột qua */
+			border-radius: 8px; /* Góc bo */
+		}
+		
+		.payment-btn:hover {
+			background-color: #45a049; /* Màu nền khi di chuột qua */
+			color: white; /* Màu chữ khi di chuột qua */
+		}
+		
     </style>
 </head>
 
@@ -405,6 +431,13 @@
                     <li class="total">Tổng hóa đơn<span>giá</span></li>
                 </ul>
             </div>
+
+			
+			<!-- Đặt hàng -->
+			<div class="checkout">
+				<button onclick="window.location.href='./thanhtoan.php'" class="payment-btn">Thanh toán ngay</button>
+			</div>
+
         </section>
     </main>
 </body>
