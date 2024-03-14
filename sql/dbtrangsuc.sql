@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2024 at 09:03 AM
+-- Generation Time: Mar 14, 2024 at 04:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -123,6 +123,16 @@ CREATE TABLE `phanloai` (
   `tenloai` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `phanloai`
+--
+
+INSERT INTO `phanloai` (`IDloai`, `soluong`, `tenloai`) VALUES
+(1, 50, 'Dây chuyền'),
+(2, 50, 'Nhẫn '),
+(3, 50, 'Vòng tay '),
+(4, 50, 'Khuyên tai ');
+
 -- --------------------------------------------------------
 
 --
@@ -132,23 +142,6 @@ CREATE TABLE `phanloai` (
 CREATE TABLE `phanquyen` (
   `IDquyen` int(11) NOT NULL,
   `tenquyen` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quanly`
---
-
-CREATE TABLE `quanly` (
-  `IDquanly` int(11) NOT NULL,
-  `hoten` varchar(50) DEFAULT NULL,
-  `diachi` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `sodienthoai` varchar(10) DEFAULT NULL,
-  `IDrole` int(11) DEFAULT NULL,
-  `IDnhanvien` int(11) DEFAULT NULL,
-  `IDtaikhoan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -170,23 +163,25 @@ CREATE TABLE `sanpham` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taikhoan`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `taikhoan` (
-  `IDtaikhoan` int(11) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(16) DEFAULT NULL,
-  `IDrole` int(11) DEFAULT NULL
+CREATE TABLE `users` (
+  `id` int(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_type` varchar(20) NOT NULL DEFAULT 'user',
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `taikhoan`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `taikhoan` (`IDtaikhoan`, `username`, `password`, `IDrole`) VALUES
-(1, 'user', 'admin', 1),
-(2, 'thu', '123', 0);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `user_type`, `image`) VALUES
+(103, 'admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', ''),
+(108, 'Test', 'test@gmail.com', '68053af2923e00204c3ca7c6a3150cf7', 'user', 'avata.png');
 
 --
 -- Indexes for dumped tables
@@ -241,12 +236,6 @@ ALTER TABLE `phanquyen`
   ADD PRIMARY KEY (`IDquyen`);
 
 --
--- Indexes for table `quanly`
---
-ALTER TABLE `quanly`
-  ADD PRIMARY KEY (`IDquanly`);
-
---
 -- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
@@ -254,10 +243,26 @@ ALTER TABLE `sanpham`
   ADD KEY `IDloai` (`IDloai`);
 
 --
--- Indexes for table `taikhoan`
+-- Indexes for table `users`
 --
-ALTER TABLE `taikhoan`
-  ADD PRIMARY KEY (`IDtaikhoan`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `IDsp` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- Constraints for dumped tables
