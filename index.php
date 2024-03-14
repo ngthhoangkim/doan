@@ -25,7 +25,7 @@
                 break;
 
             case 'thoat':
-                unset($_SESSION['role']);
+                // unset($_SESSION['role']);
                 header ('location:login/logout.php');
                         
             case 'login':

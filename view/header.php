@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
     <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
     <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
 
@@ -86,7 +88,7 @@
                     <?php
                     if (isset($_SESSION['username'])){
                         // echo $_SESSION['username'];
-                        echo  '<a class="nav-icon position-relative text-decoration-none" href="view/profile.php">'.$_SESSION['username'].'</a>';
+                        echo  '<a style="color:#116A7B;" class="nav-icon position-relative text-decoration-none" href="view/profile.php">'.$_SESSION['username'].'</a>';
                     }else{
                         //     
                         // }
@@ -95,6 +97,8 @@
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>                      
                     </a>
                     <?php } ?>
+                    <span class="las la-power-off"></span>
+                    <a  style="text-decoration: none; color: black" href="index.php?act=thoat">Logout</a>
                     
                 </div>
             </div>
