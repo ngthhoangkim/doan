@@ -5,7 +5,7 @@
     include "model/user.php";
 
     include "view/header.php";
-
+   
     if(isset($_GET['act'])){
         switch ($_GET['act']) {
             case 'about':
@@ -26,29 +26,13 @@
 
             case 'thoat':
                 unset($_SESSION['role']);
-                header ('location:login/index.php');
+                header ('location:login/logout.php');
                         
-            // case 'login':
-                
-            //     if (isset($_POST['login'])&&($_POST['login'])) {
-            //         $user = $_POST['username'];
-            //         $pass = $_POST['password'];
-
-            //         $kq = getuser($user,$pass);
-            //         $role = $kq[0]['role'];
-
-            //         if($role==1){
-            //             $_SESSION['role'] = $role;
-            //             header ('location:admin/index.php');
-            //         }else{
-            //             $_SESSION['role'] = $role;
-            //             $_SESSION['iduser'] = $kq[0]['id'];
-            //             $_SESSION['user'] = $kq[0]['user'];
-            //             header ('location: doan/index.php');
-            //             break;
-            //         }
-            //     }
-            
+            case 'login':
+                if(!isset($_SESSION['user_name'])){
+                    header('location: login/login.php');
+                 }
+                // header ('location:login/login.php');
             default:
                 include "view/home.php";
                 break;

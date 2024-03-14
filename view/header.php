@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -84,15 +84,18 @@
                         <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
                     <?php
-                        if (isset($_SESSION['username']) && ($_SESSION['username']!="")){
-                            echo  '<a class="nav-icon position-relative text-decoration-none" href="view/profile.php">'.$_SESSION['username'].'</a>';
-                        }else{
+                    if (isset($_SESSION['username'])){
+                        // echo $_SESSION['username'];
+                        echo  '<a class="nav-icon position-relative text-decoration-none" href="view/profile.php">'.$_SESSION['username'].'</a>';
+                    }else{
+                        //     
+                        // }
                     ?>
-                    <a class="nav-icon position-relative text-decoration-none" href="login/index.php">
+                    <a class="nav-icon position-relative text-decoration-none" href="index.php?act=login">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>                      
                     </a>
-
                     <?php } ?>
+                    
                 </div>
             </div>
 

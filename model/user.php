@@ -16,7 +16,6 @@
         $stmt->execute();
         $resulst = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $kq = $stmt->fetchAll();
-        return $kq;
-            
+        return $kq[0]['role'];          
     }
 ?>

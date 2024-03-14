@@ -1,11 +1,11 @@
 <?php
+    @include '../model/connectdb.php.php';
+
     session_start();
-    ob_start();
-    if (isset($_SESSION['role']) && ($_SESSION['role'] == 1)) {
-        # code...
-    }else{
-        header('location: ../login/index.php');
-    }
+    
+    if(!isset($_SESSION['admin_name'])){
+       header('location:login.php');
+     }
 ?>
 
 
@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
     <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề -->
+    <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+
 </head>
 <body>
    <input type="checkbox" id="menu-toggle">
@@ -30,8 +32,8 @@
         <div class="side-content">
             <div class="profile">
                 <div class="profile-img bg-img" style="background-image: url(../public/img/avata.png)"></div>
-                <h4>Hoàng Kim</h4>
-                <small>Nhân viên</small>
+                <h4><?php echo $_SESSION['admin_name'] ?></h4>
+                
             </div>
 
             <div class="side-menu">
