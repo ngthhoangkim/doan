@@ -4,15 +4,15 @@
     $db_user = "root"; 
     $db_pass = ""; 
     $db_name = "dbtrangsuc"; 
-    $conn = "";
+    $conn = mysqli_connect('localhost','root','','dbtrangsuc') or die('Kết nối thất bại');
 
-    try {
-      $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-    }
-      // Catch for failed connection to the database
-    catch(mysqli_sql_exception) {
-      echo "<h1 class='text-danger'>kết nối thất bại!</h1>";
-    }
+    // try {
+    //   $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+    // }
+    //   // Catch for failed connection to the database
+    // catch(mysqli_sql_exception) {
+    //   echo "<h1 class='text-danger'>kết nối thất bại!</h1>";
+    // }
     // function connectdb(){   
     //     $servername = "localhost";
     //     $username = "root";

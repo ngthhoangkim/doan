@@ -2,7 +2,7 @@
     session_start();
     ob_start();
     include "model/connectdb.php";
-    include "model/user.php";
+
 
     include "view/header.php";
    
@@ -26,14 +26,18 @@
 
             case 'thoat':
                 header ('location:login/logout.php');
-                        
+                break;
+
             case 'login':
                 if(!isset($_SESSION['user_name'])){
                     header('location: login/login.php');
                 }
+                break;
             
             case 'forgot':
                 header('location: login/forgot_pass.php');
+                break;
+                
             default:
                 include "view/home.php";
                 break;
