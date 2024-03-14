@@ -25,14 +25,15 @@
                 break;
 
             case 'thoat':
-                // unset($_SESSION['role']);
                 header ('location:login/logout.php');
                         
             case 'login':
                 if(!isset($_SESSION['user_name'])){
                     header('location: login/login.php');
-                 }
-                // header ('location:login/login.php');
+                }
+            
+            case 'forgot':
+                header('location: login/forgot_pass.php');
             default:
                 include "view/home.php";
                 break;

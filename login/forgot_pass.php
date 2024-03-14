@@ -1,42 +1,37 @@
 <?php
 
-@include '../model/connectdb.php';
+// @include '../model/connectdb.php';
 
-session_start();
+// if(isset($_POST['submit'])){
+//    $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-if(isset($_POST['submit'])){
+//    // Kiểm tra xem email có tồn tại trong cơ sở dữ liệu không
+//    $select = "SELECT * FROM users WHERE email = '$email'";
+//    $result = mysqli_query($conn, $select);
 
-   // $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   // $cpass = md5($_POST['cpassword']);
-   // $user_type = $_POST['user_type'];
+//    if(mysqli_num_rows($result) > 0){
+//       // Tạo mã đặt lại mật khẩu ngẫu nhiên
+//       $reset_token = md5(uniqid(rand(), true));
 
-   $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
+//       // Lưu mã đặt lại mật khẩu vào cơ sở dữ liệu
+//       $update = "UPDATE users SET password = '$reset_token' WHERE email = '$email'";
+//       mysqli_query($conn, $update);
 
-   $result = mysqli_query($conn, $select);
+//       // Gửi email chứa liên kết đặt lại mật khẩu
+//       $reset_link = "http://Luxurious.com/reset_password_form.php?token=$reset_token";
+//       $to = $email;
+//       $subject = "Yêu cầu đặt lại mật khẩu";
+//       $message = "Xin chào,\n\nBạn đã yêu cầu đặt lại mật khẩu. Vui lòng truy cập liên kết sau để đặt lại mật khẩu:\n\n$reset_link\n\nNếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.\n\nTrân trọng,\nĐội ngũ hỗ trợ";
+//       $headers = "From: LUXURIOUS@gmail.com\r\n";
+//       mail($to, $subject, $message, $headers);
 
-   if(mysqli_num_rows($result) > 0){
+//       // Chuyển hướng người dùng đến trang thông báo thành công
+//       header('location: reset_password_success.php');
+//    }else{
+//       $error[] = 'Email không tồn tại trong cơ sở dữ liệu!';
+//    }
+// }
 
-      $row = mysqli_fetch_array($result);
-
-      if($row['user_type'] == 'admin'){
-
-         $_SESSION['admin_name'] = $row['username'];
-         header('location: ../admin/index.php');
-
-      }elseif($row['user_type'] == 'user'){
-
-         $_SESSION['username'] = $row['username'];
-         header('location: ../index.php');
-
-      }
-     
-   }else{
-      $error[] = 'Mật khẩu hoặc password sai!';
-   }
-
-};
 ?>
 
 <!DOCTYPE html>
@@ -194,18 +189,9 @@ if(isset($_POST['submit'])){
 <div class="form-container">
 
    <form action="" method="post">
-      <h3>Đăng nhập</h3>
-      <?php
-         if(isset($error)){
-            foreach($error as $error){
-               echo '<span  class="error-msg">'.$error.'</span>';
-            };
-         };
-      ?>
+      <h3>Quên mật khẩu</h3>
       <input type="email" name="email" required placeholder="Nhập email">
-      <input type="password" name="password" required placeholder="Nhập password">
-      <input type="submit" style="color:#ECE5C7 " name="submit" value="Đăng nhập" class="form-btn">
-      <a href="../index.php?act=forgot">Quên mật khẩu</a>
+      <input type="submit" style="color:#ECE5C7 " name="submit" value="Gửi yêu cầu" class="form-btn">
       <p><a href="register.php">Đăng ký</a></p>
    </form>
 
