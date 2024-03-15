@@ -225,7 +225,7 @@ include "./header.php";
                 <br class="require_login">
                 <div class="frame_require_login">
                     <strong>Vui lòng đăng nhập để đặt hàng!</strong> 
-                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="./login.html"> - Đăng nhập</a>
+                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>
                 </div>
 
             </div>
