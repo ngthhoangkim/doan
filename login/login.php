@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
       }
      
    }else{
-      $error[] = 'Mật khẩu hoặc password sai!';
+      $error[] = 'Mật khẩu hoặc email sai!';
    }
 
 };

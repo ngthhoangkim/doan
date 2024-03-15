@@ -5,43 +5,43 @@
     
     if(isset($_POST['update_profile'])){
 
-    $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
-    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
+      $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
+      $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-    mysqli_query($conn, "UPDATE `users` SET username = '$update_name', email = '$update_email' WHERE id = '$user_id'") or die('Cập nhật thất bại');
+      mysqli_query($conn, "UPDATE `users` SET username = '$update_name', email = '$update_email' WHERE id = '$user_id'") or die('Cập nhật thất bại');
 
-    $old_pass = $_POST['old_pass'];
-    $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-    $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-    $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+      $old_pass = $_POST['old_pass'];
+      $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
+      $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
+      $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
 
-    if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-        if($update_pass != $old_pass){
-            $message[] = 'Không trùng khớp với mật khẩu cũ!';
-        }elseif($new_pass != $confirm_pass){
-            $message[] = 'Mật khẩu nhập lại không trùng khớp!';
-        }else{
-            mysqli_query($conn, "UPDATE `users` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('Cập nhật thất bại');
-            $message[] = 'Cập nhật mật khẩu thành công!';
-        }
-    }
+      if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
+         if($update_pass != $old_pass){
+               $message[] = 'Không trùng khớp với mật khẩu cũ!';
+         }else if($new_pass != $confirm_pass){
+               $message[] = 'Mật khẩu nhập lại không trùng khớp!';
+         }else{
+               mysqli_query($conn, "UPDATE `users` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('Cập nhật thất bại');
+               $message[] = 'Cập nhật mật khẩu thành công!';
+         }
+      }
 
-    $update_image = $_FILES['update_image']['name'];
-    $update_image_size = $_FILES['update_image']['size'];
-    $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-    $update_image_folder = '../public/uploaded_img/'.$update_image;
+      $update_image = $_FILES['update_image']['name'];
+      $update_image_size = $_FILES['update_image']['size'];
+      $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+      $update_image_folder = '../public/uploaded_img/'.$update_image;
 
-    if(!empty($update_image)){
-        if($update_image_size > 2000000){
-            $message[] = 'image is too large';
-        }else{
-            $image_update_query = mysqli_query($conn, "UPDATE `users` SET image = '$update_image' WHERE id = '$user_id'") or die('Cập nhật thất bại');
-            if($image_update_query){
-                move_uploaded_file($update_image_tmp_name, $update_image_folder);
-            }
-            $message[] = 'Cập nhật ảnh thành công!';
-        }
-    }
+      if(!empty($update_image)){
+         if($update_image_size > 2000000){
+               $message[] = 'Ảnh quá lớn';
+         }else{
+               $image_update_query = mysqli_query($conn, "UPDATE `users` SET image = '$update_image' WHERE id = '$user_id'") or die('Cập nhật thất bại');
+               if($image_update_query){
+                  move_uploaded_file($update_image_tmp_name, $update_image_folder);
+               }
+               $message[] = 'Cập nhật ảnh thành công!';
+         }
+      }
 
     }
 ?>
