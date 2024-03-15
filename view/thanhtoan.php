@@ -7,7 +7,7 @@
         }
 
         .background-image {
-            background-image: url('../images/thanhtoan.jpg');
+            background-image: url('../public/img/thanhtoan.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -39,6 +39,12 @@
             background-color: white;
             margin-top: 20px;
             height: 540px;
+        }
+
+        .info_user, .info_order {
+            height: auto; /* Thiết lập chiều cao tự động */
+            min-height: 600px; /* Đảm bảo chiều cao tối thiểu của phần tử */
+            overflow: auto; /* Bật tính năng cuộn nếu nội dung vượt quá kích thước */
         }
 
         .header_checkout .form-group label {
@@ -134,8 +140,8 @@
     <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
     <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
 
-    <link rel="stylesheet" href="public/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../public/css/main.css">
     
 
     <!-- font chữ: Roboto -->
@@ -218,8 +224,8 @@ include "./header.php";
 
                 <br class="require_login">
                 <div class="frame_require_login">
-                    <strong>Vui lòng đăng nhập để đặt hàng</strong> 
-                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="./login.html">Đăng nhập</a>
+                    <strong>Vui lòng đăng nhập để đặt hàng!</strong> 
+                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="./login.html"> - Đăng nhập</a>
                 </div>
 
             </div>
