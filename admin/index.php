@@ -39,37 +39,31 @@
             <div class="side-menu">
                 <ul>
                     <li>
-                       <a href="#" class="active">
+                       <a href="../index.php?act=home_admin" class="active">
                             <span class="las la-home"></span>
                             <small>Home</small>
                         </a>
                     </li>
                     <li>
-                       <a href="">
-                            <span class="las la-address-card"></span>
-                            <small>Profile</small>
-                        </a>
-                    </li>
-                    <li>
-                       <a href="">
+                       <a href="../index.php?act=mail_admin">
                             <span class="las la-envelope"></span>
                             <small>Mailbox</small>
                         </a>
                     </li>
                     <li>
-                       <a href="">
+                       <a href="../index.php?act=qlsp_admin">
                             <span class="las la-clipboard-list"></span>
                             <small>Sản phẩm</small>
                         </a>
                     </li>
                     <li>
-                       <a href="">
+                       <a href="../index.php?act=qldh_admin">
                             <span class="las la-shopping-cart"></span>
                             <small>Đơn hàng</small>
                         </a>
                     </li>
                     <li>
-                       <a href="">
+                       <a href="../index.php?act=qlkh_admin">
                             <span class="las la-user"></span>
                             <small>Khách hàng</small>
                         </a>

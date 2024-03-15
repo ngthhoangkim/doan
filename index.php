@@ -37,7 +37,27 @@
             case 'forgot':
                 header('location: login/forgot_pass.php');
                 break;
-                
+
+            case 'home_admin':
+                header('location: admin/index.php');
+                break;
+            
+            case 'mail_admin':
+                header('location: admin/view_admin/mail.php');
+                break;
+            
+            case 'qldh_admin':
+                header('location: admin/view_admin/qldh.php');
+                break;
+            
+            case 'qlkh_admin':
+                header('location: admin/view_admin/qlkh.php');
+                break;
+
+            case 'qlsp_admin':
+                header('location: admin/view_admin/qlsp.php');
+                break;
+
             default:
                 include "view/home.php";
                 break;
