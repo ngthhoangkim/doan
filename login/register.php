@@ -11,10 +11,12 @@ if(isset($_POST['submit'])){
    $user_type = $_POST['user_type'];
 
    $select = " SELECT * FROM users WHERE email = '$email'|| username = '$name' ";
+   $selectAdmin = "SELECT * FROM users WHERE user_type = 'admin'";
 
    $result = mysqli_query($conn, $select);
+   $resultAdmin = mysqli_query($conn, $selectAdmin);
 
-   if(mysqli_num_rows($result) > 0){
+   if(mysqli_num_rows($result) > 0|| mysqli_num_rows($resultAdmin) > 0){
 
       $error[] = 'Tài khoản đã tồn tại!';
 
