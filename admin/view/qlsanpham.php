@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thêm Sản Phẩm và Phân Loại</title>
 <style>
 .container {
     display: flex;
@@ -12,6 +6,7 @@
     justify-content: center;
     min-height: 100vh;
     background-color: #f8f9fa;
+    margin-top: 100px;
 }
 
 .form-container {
