@@ -1,4 +1,15 @@
+
+
+
+
+
+
+
+
 <body>
+  <DIV>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1352584761203!2d106.65027987583848!3d10.800951058739267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752937ddf0706b%3A0x833dda1f4454e779!2zTE9UVEUgTWFydCBUw6JuIELDrG5o!5e0!3m2!1svi!2s!4v1710562059940!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </DIV>
   <div class="container">
     <form id="contact" action="" method="post">
       <h1>Liên hệ</h1>
@@ -24,60 +35,64 @@
 </body>
 
 <style>
-    body{
-        font-size: 12px;
-        line-height: 30px;
-    }
+  
+  body {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
 
-    #contact input {
-      font: 400 12px/16px;
-      width: 100%;
-      border: 1px solid #CCC;
-      background: #FFF;
-      margin: 10 5px;
-      padding: 10px;
-    }
+#contact {
+  background-color: #fff;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 500px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-    h1 {
-      margin-bottom: 30px;
-      font-size: 30px;
-      text-align: center;
-      color: #116A7B;
-    }
- 
-    #contact {
-      background: #fff;
-      padding: 25px;
-      margin: 50px 0;
-    }
-    fieldset {
-      border: medium none !important;
-      margin: 0 0 10px;
-      min-width: 100%;
-      padding: 0;
-      width: 100%;
-    }
- 
-    textarea {
-      height: 100px;
-      max-width: 100%;
-      resize: none;
-      width: 100%;
-    }
- 
-    button {
-      cursor: pointer;
-      width: 100%;
-      border: none;
-      background:  #fff;
-      color: black;
-      margin: 0 0 5px;
-      padding: 10px;
-      font-size: 20px;
-    }
- 
-    button:hover {
-      background-color: #116A7B;
-      color: #ECE5C7;
-    }
+fieldset {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="phone"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #116a7b;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0a4c56;
+}
+h1 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-align: center; /* Căn giữa nội dung */
+  color: #116a7b;
+}
+
+
+
 </style>
