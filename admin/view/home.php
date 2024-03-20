@@ -10,34 +10,24 @@
 
                     <div class="card">
                         <div class="card-head">
-                            <!-- <h2>107,200</h2> --> 
-                            <span class="las la-user-friends"></span>
+                            <a href="../admin/index.php?act=qltaikhoan"><span class="las la-user-friends"></span></a>
                         </div>
                         <div class="card-progress">
                             <small>Tài khoản</small>
-                            <!-- <div class="card-indicator">
-                                <div class="indicator one" style="width: 60%"></div>
-                            </div> -->
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-head">
-                            <!-- <h2>340,230</h2> -->
-                            <span class="las la-shopping-bag"></span>
+                            <a href="../admin/index.php?act=qlsanpham"><span class="las la-shopping-bag"></span></a>
                         </div>
                         <div class="card-progress">
                             <small>Sản phẩm</small>
-                            <!-- <div class="card-indicator">
-                                <div class="indicator two" style="width: 80%"></div>
-                            </div> -->
                         </div>
                     </div>
-
                     <div class="card">
                         <div class="card-head">
-                            <!-- <h2>$653,200</h2> -->
-                            <span class="las la-shopping-cart"></span>
+                            <a href="../admin/index.php?act=qldonhang"><span class="las la-shopping-cart"></span></a>
                         </div>
                         <div class="card-progress">
                             <small>Đơn hàng</small>
@@ -49,14 +39,10 @@
 
                     <div class="card">
                         <div class="card-head">
-                            <!-- <h2>47,500</h2> -->
-                            <span class="las la-envelope"></span>
+                        <a href="../admin/index.php?act=mailbox"><span class="las la-envelope"></span></a>
                         </div>
                         <div class="card-progress">
                             <small>Feedback</small>
-                            <!-- <div class="card-indicator">
-                                <div class="indicator four" style="width: 90%"></div>
-                            </div> -->
                         </div>
                     </div>
 

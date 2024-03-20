@@ -81,7 +81,7 @@
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="view/giohang.php">
+                    <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
@@ -89,7 +89,7 @@
                     if (isset($_SESSION['username'])){
                         // echo $_SESSION['username'];
                         echo'
-                            <a style="color:#116A7B;" class="nav-icon position-relative text-decoration-none" href="view/profile.php">'.$_SESSION['username'].'</a>
+                            <a style="color:#116A7B;" class="nav-icon position-relative text-decoration-none" href="index.php?act=profile">'.$_SESSION['username'].'</a>
                             <span class="las la-power-off"></span>
                             <a  style="text-decoration: none; color: black" href="index.php?act=thoat">Logout</a>
                         ';
