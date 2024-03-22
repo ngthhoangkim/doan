@@ -28,10 +28,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
-            /* Đổi màu nền tùy ý */
-            color: white;
-            padding: 0;
+            padding: 10px;
             z-index: 1000;
             /* Đảm bảo header hiển thị trên tất cả các phần tử khác */
             min-height: auto;

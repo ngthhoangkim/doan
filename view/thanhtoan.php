@@ -34,10 +34,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 105vh;
             /* Chiều cao tối thiểu của main là 100% chiều cao của viewport */
             scroll-behavior: smooth;
             overflow: auto;
+            scroll-behavior: smooth;
 
         }
 
@@ -67,8 +68,7 @@
             /* Giới hạn chiều rộng tối đa */
             background: rgba(0, 0, 0, 0.5);
             /* Màu nền của overlay-content với độ mờ là 50% */
-            padding: 20px;
-            /* Phần lề cho nội dung */
+            margin-top: 150px;
         }
 
         /*style.css*/
