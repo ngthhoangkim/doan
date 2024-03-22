@@ -1,6 +1,4 @@
 <head>
-	<link rel="stylesheet" href="../public/css/giohang.css">
-
 	<style>
 		html {
 			font-size: 62.5%;
@@ -339,6 +337,28 @@
 			color: white; /* Màu chữ khi di chuột qua */
 		}
 		
+
+		/* Fix thông báo đăng nhập để thực hiện thanh toán */
+		#loginPrompt {
+			display: none;
+			text-align: center;
+			margin-top: 10px;
+		}
+
+		#loginPrompt a {
+			display: inline-block;
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			text-decoration: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		#loginPrompt a:hover {
+			background-color: #45a049;
+		}
+
     </style>
 </head>
 
@@ -435,7 +455,30 @@
 			
 			<!-- Đặt hàng -->
 			<div class="checkout">
-				<button onclick="window.location.href='./thanhtoan.php'" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay!</a></button>
+				<button onclick="checkLogin()" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay!</a></button>
+			</div>
+
+			<script>
+				function checkLogin() {
+					// Kiểm tra xem người dùng đã đăng nhập hay chưa (thay bằng cách kiểm tra session hoặc cookie)
+					var isLoggedIn = false; // Thay đổi giá trị này dựa trên việc kiểm tra đăng nhập
+
+					// Nếu người dùng đã đăng nhập, chuyển hướng đến trang thanh toán
+					if (isLoggedIn) {
+						window.location.href = './thanhtoan.php'; // Thay đổi đường dẫn thanh toán nếu cần
+					} else {
+						// Nếu người dùng chưa đăng nhập, hiển thị thông báo và nút OK
+						var confirmation = confirm("Bạn chưa đăng nhập! Vui lòng đăng nhập để thực hiện thanh toán!");
+						if (confirmation) {
+							window.location.href = 'http://localhost/doan/login/login.php';
+						}
+					}
+				}
+			</script>
+
+			<div id="loginPrompt" style="display: none;">
+				<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để thực hiện thanh toán!</p>
+				<a href="http://localhost/doan/login/login.php">OK</a>
 			</div>
 
         </section>

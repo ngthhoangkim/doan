@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    // Kiểm tra xem người dùng đã đăng nhập chưa
+    if(!isset($_SESSION['user_name'])) {
+        // Nếu chưa đăng nhập, chuyển hướng người dùng đến trang đăng nhập
+        header('Location: ../login/login.php');
+        exit(); // Kết thúc kịch bản
+    }
+?>
+
 <head>
     <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
     <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
@@ -259,8 +270,7 @@
                 <br class="require_login">
                 <div class="frame_require_login">
                     <strong>Vui lòng đăng nhập để đặt hàng!</strong>
-                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> -
-                        Đăng nhập</a>
+                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>
                 </div>
 
             </div>
