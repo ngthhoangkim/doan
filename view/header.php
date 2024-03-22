@@ -6,24 +6,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
     <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
     <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
 
-    <link rel="stylesheet" href="public/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/main.css">
-    
+
 
     <!-- font chữ: Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="public/css/fontawesome.min.css">
+    
+    <!--
+    <style>
+        body {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            /* Đổi màu nền tùy ý */
+            color: white;
+            padding: 0;
+            z-index: 1000;
+            /* Đảm bảo header hiển thị trên tất cả các phần tử khác */
+            min-height: auto;
+            scroll-behavior: smooth;
 
+        }
+    </style>
+    -->
 </head>
 
 <body>
-        <!--phần top nav-->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+    <!--phần top nav-->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
                 <div>
@@ -33,7 +54,8 @@
                     <a class="navbar-sm-brand text-light text-decoration-none" href="#">010-020-0340</a>
                 </div>
                 <div>
-                    <a class="text-light" href="#" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="#" target="_blank" rel="sponsored"><i
+                            class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
                     <a class="text-light" href="#" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
                 </div>
             </div>
@@ -45,14 +67,17 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
-               Luxurious
+                Luxurious
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -78,7 +103,8 @@
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
+                        data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="view/giohang.php">
@@ -86,29 +112,30 @@
                         <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
                     <?php
-                    if (isset($_SESSION['username'])){
+                    if (isset ($_SESSION['username'])) {
                         // echo $_SESSION['username'];
-                        echo'
-                            <a style="color:#116A7B;" class="nav-icon position-relative text-decoration-none" href="index.php?act=profile">'.$_SESSION['username'].'</a>
+                        echo '
+                            <a style="color:#116A7B;" class="nav-icon position-relative text-decoration-none" href="index.php?act=profile">' . $_SESSION['username'] . '</a>
                             <span class="las la-power-off"></span>
                             <a  style="text-decoration: none; color: black" href="index.php?act=thoat">Logout</a>
                         ';
-                    }else{
+                    } else {
                         //     
                         // }
-                    ?>
-                    <a class="nav-icon position-relative text-decoration-none" href="index.php?act=login">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>                      
-                    </a>
+                        ?>
+                        <a class="nav-icon position-relative text-decoration-none" href="index.php?act=login">
+                            <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        </a>
                     <?php } ?>
-                    
-                    
+
+
                 </div>
             </div>
 
         </div>
     </nav>
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

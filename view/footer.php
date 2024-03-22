@@ -1,6 +1,23 @@
+<!--
+<head>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333; /* Đổi màu nền tùy ý */
+            color: white;
+            padding: 10px;
+            z-index: 1000; /* Đảm bảo footer hiển thị trên tất cả các phần tử khác */
+            scroll-behavior: smooth;
 
+        }
+    </style>
+</head>
+-->
 <body>
-<footer class="bg-dark" id="tempaltemo_footer">
+    <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
