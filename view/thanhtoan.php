@@ -6,14 +6,14 @@
             padding: 0;     /* Xóa padding mặc định */
         }
 
-        .background-image {
+/*        .background-image {
             background-image: url('../public/img/thanhtoan.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
-            color: white;     /* Màu văn bản trên ảnh */
-            height: 100%;       /* Đảm bảo chiều cao của phần tử background-image là 100% của trình duyệt */
-        }
+            color: white;           Màu văn bản trên ảnh 
+            height: 100%;           Đảm bảo chiều cao của phần tử background-image là 100% của trình duyệt
+        }   */
 
         .overlay-content {
             position: absolute;
@@ -142,16 +142,13 @@
 
     <link rel="stylesheet" href="../public/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="../public/css/main.css">
-    
+
 
     <!-- font chữ: Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="public/css/fontawesome.min.css">
 </head>
 
-<?php
-include "./header.php";
-?>
 
 <body>
     <div class="background-image">
@@ -224,7 +221,7 @@ include "./header.php";
 
                 <br class="require_login">
                 <div class="frame_require_login">
-                    <strong>Vui lòng đăng nhập để đặt hàng!</strong> 
+                    <strong>Vui lòng đăng nhập để đặt hàng!</strong>
                     <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>
                 </div>
 
@@ -233,7 +230,4 @@ include "./header.php";
 
 </body>
 
-<?php
-include "./footer.php";
-?>
 

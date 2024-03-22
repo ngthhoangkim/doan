@@ -1,5 +1,5 @@
 <head>
-	<link rel="stylesheet" href="../giohang.css">
+	<link rel="stylesheet" href="../public/css/giohang.css">
 
 	<style>
 		html {
@@ -435,7 +435,7 @@
 			
 			<!-- Đặt hàng -->
 			<div class="checkout">
-				<button onclick="window.location.href='./thanhtoan.php'" class="payment-btn">Thanh toán ngay</button>
+				<button onclick="window.location.href='./thanhtoan.php'" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay!</a></button>
 			</div>
 
         </section>
