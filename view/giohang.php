@@ -338,7 +338,7 @@
 		}
 		
 
-		/* Fix thông báo đăng nhập để thực hiện thanh toán */
+		/* Fix thông báo đăng nhập để thực hiện thanh toán 
 		#loginPrompt {
 			display: none;
 			text-align: center;
@@ -357,7 +357,7 @@
 
 		#loginPrompt a:hover {
 			background-color: #45a049;
-		}
+		}	*/
 
     </style>
 </head>
@@ -465,10 +465,10 @@
 
 					// Nếu người dùng đã đăng nhập, chuyển hướng đến trang thanh toán
 					if (isLoggedIn) {
-						window.location.href = './thanhtoan.php'; // Thay đổi đường dẫn thanh toán nếu cần
+						window.location.href = 'http://localhost/doan/login/login.php'; // Thay đổi đường dẫn thanh toán nếu cần
 					} else {
 						// Nếu người dùng chưa đăng nhập, hiển thị thông báo và nút OK
-						var confirmation = confirm("Bạn chưa đăng nhập! Vui lòng đăng nhập để thực hiện thanh toán!");
+						var confirmation = confirm("Nếu bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện thanh toán!");
 						if (confirmation) {
 							window.location.href = 'http://localhost/doan/login/login.php';
 						}
@@ -476,11 +476,11 @@
 				}
 			</script>
 
-			<div id="loginPrompt" style="display: none;">
-				<p>Bạn chưa đăng nhập! Vui lòng đăng nhập để thực hiện thanh toán!</p>
+<!--			<div id="loginPrompt" style="display: none;">
+				<p>Nếu bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện thanh toán!</p>
 				<a href="http://localhost/doan/login/login.php">OK</a>
 			</div>
-
+-->
         </section>
     </main>
 </body>

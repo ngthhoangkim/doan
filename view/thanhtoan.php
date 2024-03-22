@@ -1,12 +1,28 @@
 <?php
-    session_start();
-
     // Kiểm tra xem người dùng đã đăng nhập chưa
-    if(!isset($_SESSION['user_name'])) {
-        // Nếu chưa đăng nhập, chuyển hướng người dùng đến trang đăng nhập
-        header('Location: ../login/login.php');
-        exit(); // Kết thúc kịch bản
+    $isLoggedIn = isset($_SESSION['username']);
+
+// Nếu người dùng chưa đăng nhập và không phải trang đăng nhập
+if (!$isLoggedIn && basename($_SERVER['PHP_SELF']) != 'login.php') {
+    // Chuyển hướng đến trang đăng nhập
+    header('Location: http://localhost/doan/login/login.php');
+    exit; // Dừng việc thực thi mã PHP tiếp theo
+}
+
+// Cập nhật lại trạng thái đăng nhập sau khi người dùng đăng nhập thành công
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Kiểm tra username và password trong cơ sở dữ liệu
+    if ($username == 'username' && $password == 'password') {
+        $_SESSION['isLoggedIn'] = true;
+        // Chuyển hướng về trang thanh toán sau khi đăng nhập thành công
+        header('Location: http://localhost/doan/thanhtoan.php');
+        exit;
     }
+}
+
 ?>
 
 <head>
@@ -269,8 +285,8 @@
 
                 <br class="require_login">
                 <div class="frame_require_login">
-                    <strong>Vui lòng đăng nhập để đặt hàng!</strong>
-                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>
+                    <strong></strong>
+<!--                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>  -->
                 </div>
 
             </div>
