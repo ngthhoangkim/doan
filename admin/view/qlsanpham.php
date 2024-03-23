@@ -80,15 +80,26 @@
         animation: slideIn 0.5s ease-out;
     }
 
-    h2 {
+    .form-container h2 {
         text-align: center;
     }
+    a{
+        text-decoration: none;
+        text-align: center;
+        color:#116A7B; 
+        margin-bottom: 20px; 
+        margin-top: 20px
+    }
 
+    a:hover{
+        text-decoration:underline;
+    }
 </style>
 </head>
 <body>
     <main>
         <div class="container">
+            <a href="../admin/index.php?act=view_product"><h2>Xem danh sách sản phẩm</h2></a>
             <div class="form-container">
                 <h2>Thêm Sản Phẩm</h2>
                 <form method="post" enctype="multipart/form-data" id="addProductForm">
@@ -118,7 +129,6 @@
                 </form>
             </div>
         </div>
-
         <?php
             $conn = mysqli_connect("localhost", "root", "", "dbtrangsuc");
 
@@ -173,7 +183,7 @@
             }
 
             mysqli_close($conn);
-        ?>
+        ?>     
     </main>
 </body>
 </html>
