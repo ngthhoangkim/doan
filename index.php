@@ -20,6 +20,10 @@
                 include "view/lienhe.php";
                 break;    
                 
+            case 'thanhtoan':
+                include "view/thanhtoan.php";
+                break;
+                
             case 'home':
                 include "view/home.php";
                 break;

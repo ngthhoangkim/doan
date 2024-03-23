@@ -1,31 +1,101 @@
+<?php
+    // Kiểm tra xem người dùng đã đăng nhập chưa
+    $isLoggedIn = isset($_SESSION['username']);
+
+// Nếu người dùng chưa đăng nhập và không phải trang đăng nhập
+if (!$isLoggedIn && basename($_SERVER['PHP_SELF']) != 'login.php') {
+    // Chuyển hướng đến trang đăng nhập
+    header('Location: http://localhost/doan/login/login.php');
+    exit; // Dừng việc thực thi mã PHP tiếp theo
+}
+
+// Cập nhật lại trạng thái đăng nhập sau khi người dùng đăng nhập thành công
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Kiểm tra username và password trong cơ sở dữ liệu
+    if ($username == 'username' && $password == 'password') {
+        $_SESSION['isLoggedIn'] = true;
+        // Chuyển hướng về trang thanh toán sau khi đăng nhập thành công
+        header('Location: http://localhost/doan/thanhtoan.php');
+        exit;
+    }
+}
+
+?>
+
 <head>
+    <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+    <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
+
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/main.css">
+
+
+    <!-- font chữ: Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="public/css/fontawesome.min.css">
+
     <style>
-        body, html {
-            height: 100%;   /* Đảm bảo chiều cao của body và html là 100% */
-            margin: 0;      /* Xóa margin mặc định */
-            padding: 0;     /* Xóa padding mặc định */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* Chiều cao tối thiểu của body là 100% của viewport */
+            margin: 0;
         }
 
         .background-image {
+            flex: 1;
+            /* Phần này sẽ mở rộng để lấp đầy không gian giữa header và footer */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 105vh;
+            /* Chiều cao tối thiểu của main là 100% chiều cao của viewport */
+            scroll-behavior: smooth;
+            overflow: auto;
+            scroll-behavior: smooth;
+
+        }
+
+
+        /*        .background-image {
             background-image: url('../public/img/thanhtoan.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
-            color: white;     /* Màu văn bản trên ảnh */
-            height: 100%;       /* Đảm bảo chiều cao của phần tử background-image là 100% của trình duyệt */
-        }
+            color: white;           Màu văn bản trên ảnh 
+            height: 100%;           Đảm bảo chiều cao của phần tử background-image là 100% của trình duyệt
+        }   */
 
         .overlay-content {
+            text-align: center;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;     /* Căn giữa nội dung */
-            z-index: 1;     /* Đảm bảo nội dung hiển thị trên ảnh nền */
-            width: 80%;     /* Chiều rộng của overlay-content */
-            max-width: 800px;   /* Giới hạn chiều rộng tối đa */
-            background: rgba(0, 0, 0, 0.5);     /* Màu nền của overlay-content với độ mờ là 50% */
-            padding: 20px;  /* Phần lề cho nội dung */
+            text-align: center;
+            /* Căn giữa nội dung */
+            z-index: 1;
+            /* Đảm bảo nội dung hiển thị trên ảnh nền */
+            width: 80%;
+            /* Chiều rộng của overlay-content */
+            max-width: 800px;
+            /* Giới hạn chiều rộng tối đa */
+            background: rgba(0, 0, 0, 0.5);
+            /* Màu nền của overlay-content với độ mờ là 50% */
+            margin-top: 150px;
         }
 
         /*style.css*/
@@ -41,10 +111,14 @@
             height: 540px;
         }
 
-        .info_user, .info_order {
-            height: auto; /* Thiết lập chiều cao tự động */
-            min-height: 600px; /* Đảm bảo chiều cao tối thiểu của phần tử */
-            overflow: auto; /* Bật tính năng cuộn nếu nội dung vượt quá kích thước */
+        .info_user,
+        .info_order {
+            height: auto;
+            /* Thiết lập chiều cao tự động */
+            min-height: 600px;
+            /* Đảm bảo chiều cao tối thiểu của phần tử */
+            overflow: auto;
+            /* Bật tính năng cuộn nếu nội dung vượt quá kích thước */
         }
 
         .header_checkout .form-group label {
@@ -136,25 +210,12 @@
             height: 300px;
         }
     </style>
-
-    <link rel="apple-touch-icon" href="public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
-    <link rel="shortcut icon" type="public/image/x-icon" href="public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
-
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="../public/css/main.css">
-    
-
-    <!-- font chữ: Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="public/css/fontawesome.min.css">
 </head>
 
-<?php
-include "./header.php";
-?>
 
 <body>
-    <div class="background-image">
+    <main>
+        <div class="background-image">
             <div class="overlay-content">
                 <h1>Checkout - Luxury Store</h1>
                 <form method="POST">
@@ -171,8 +232,8 @@ include "./header.php";
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Email</label>
-                                    <input name="email" type="text" class="form-control" placeholder="Nhập email của bạn"
-                                        required="required">
+                                    <input name="email" type="text" class="form-control"
+                                        placeholder="Nhập email của bạn" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Số điện thoại</label>
@@ -224,16 +285,12 @@ include "./header.php";
 
                 <br class="require_login">
                 <div class="frame_require_login">
-                    <strong>Vui lòng đăng nhập để đặt hàng!</strong> 
-                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>
+                    <strong></strong>
+<!--                    <a style="text-decoration: none;font-weight: 600; font-size: 17px;" href="../login/login.php"> - Đăng nhập</a>  -->
                 </div>
 
             </div>
-    </div>
+        </div>
 
+    </main>
 </body>
-
-<?php
-include "./footer.php";
-?>
-

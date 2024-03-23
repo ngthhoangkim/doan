@@ -206,7 +206,7 @@ if(isset($_POST['submit'])){
       <input type="email" name="email" required placeholder="Nhập email">
       <input type="password" name="password" required placeholder="Nhập password">
       <input type="submit" style="color:#ECE5C7 " name="submit" value="Đăng nhập" class="form-btn">
-      <a href="../index.php?act=forgot">Quên mật khẩu</a>
+      <a href="quenmk.php">Quên mật khẩu</a>
       <p><a href="register.php">Đăng ký</a></p>
    </form>
 
