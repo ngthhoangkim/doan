@@ -14,7 +14,7 @@
         }
         .sidebar{
             border:1px solid #116A7B;
-            height:390px;
+            height:350px;
             width:20%;
             margin-top: 5px;
             margin-left: 5px;
@@ -114,11 +114,14 @@
     if ($result->num_rows > 0) {
         // Hiển thị tất cả sản phẩm theo id_type
         while($row_pro = $result->fetch_assoc()) {
+           
             echo '<li>';
+            echo '<a href="index.php?act=chitietsp&id='.$row_pro['id'].'">';
             echo '<img src="admin/update_img/'.$row_pro['image'].'">';
             echo '<p class="name_product">Tên sản phẩm: '.$row_pro['name'].'</p>';
             echo '<p class="price_product">Giá: '.number_format($row_pro['price'],0,',','.').' đ</p>';
             echo '</li>';
+            echo '</a>';
         }
     } else {
         echo 'Không có sản phẩm cho loại này';
@@ -131,11 +134,14 @@
     if ($result->num_rows > 0) {
         // Hiển thị một sản phẩm ngẫu nhiên có id_type
         while($row_pro = $result->fetch_assoc()) {
+       
         echo '<li>';
+        echo '<a href="index.php?act=chitietsp&id='.$row_pro['id'].'">';
         echo '<img src="admin/update_img/'.$row_pro['image'].'">';
         echo '<p class="name_product">Tên sản phẩm: '.$row_pro['name'].'</p>';
         echo '<p class="price_product">Giá: '.number_format($row_pro['price'],0,',','.').' đ</p>';
         echo '</li>';
+        echo '</a>';
         }
     } else {
         echo 'Không có sản phẩm ngẫu nhiên';

@@ -15,7 +15,11 @@
             case 'sanpham':
                 include "view/sanpham.php";
                 break;
-            
+
+            case 'chitietsp':
+                include "view/chitietsp.php";
+                break;
+                
             case 'lienhe':
                 include "view/lienhe.php";
                 break;    
