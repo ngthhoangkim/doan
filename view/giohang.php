@@ -368,7 +368,7 @@
             <h1>Giỏ hàng</h1>
 
             <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
                 <li>Giỏ hàng</li>
             </ul>
 
@@ -455,7 +455,7 @@
 			
 			<!-- Đặt hàng -->
 			<div class="checkout">
-				<button onclick="checkLogin()" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay!</a></button>
+				<button onclick="checkLogin()" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay</a></button>
 			</div>
 
 			<script>

@@ -124,7 +124,7 @@
                         <td><img src="<?php echo '../admin/update_img/' . $row['image']; ?>" alt="Hình ảnh sản phẩm"></td>
                         <td>
                             <a href="view/edit_product.php?edit_id=<?php echo $row['id'];?>"><button class="edit-button">Sửa</button></a>
-                            <a href=""><button class="delete-button">Xóa</button></a>
+                            <a href="view/delete_product.php?delete_id=<?php echo $row['id'];?>"><button class="delete-button">Xóa</button></a>
                         </td>
                     </tr>
                 </tbody>
