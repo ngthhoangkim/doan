@@ -42,20 +42,20 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Dây Chuyền</a></li>
-                        <li><a class="text-decoration-none" href="#">Vòng Tay</a></li>
-                        <li><a class="text-decoration-none" href="#">Nhẫn</a></li>
-                        <li><a class="text-decoration-none" href="#">Khuyên Tai</a></li>                       
+                        <li><a class="text-decoration-none" href="index.php?act=sanpham&id_type=6">Dây Chuyền</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=sanpham&id_type=7">Vòng Tay</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=sanpham&id_type=5">Nhẫn</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=sanpham&id_type=8">Khuyên Tai</a></li>                       
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Danh mục</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Sản phẩm</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="index.php">Home</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=about">About Us</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=sanpham">Sản phẩm</a></li>
+                        <li><a class="text-decoration-none" href="index.php?act=lienhe">Contact</a></li>
                     </ul>
                 </div>
 
