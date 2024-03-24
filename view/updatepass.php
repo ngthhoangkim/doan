@@ -1,26 +1,46 @@
 <?php
-      @include '../model/connectdb.php';
-      session_start();
-      $user_id = $_SESSION['id_user'];
-      if(isset($_POST['update_pass'])){
+include '../model/connectdb.php';
+session_start();
 
-            $old_pass = $_POST['old_pass'];
-            $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-            $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-            $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
-        
-            if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-                if($update_pass != $old_pass){
-                      $message[] = 'Không trùng khớp với mật khẩu cũ!';
-                }else if($new_pass != $confirm_pass){
-                      $message[] = 'Mật khẩu nhập lại không trùng khớp!';
-                }else{
-                      mysqli_query($conn, "UPDATE `users` SET password = '$confirm_pass' WHERE id = '$user_id'") or die('Cập nhật thất bại');
-                      $message[] = 'Cập nhật mật khẩu thành công!';
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['id_user'];
+
+if(isset($_POST['update_pass'])) {
+    $old_pass = md5(mysqli_real_escape_string($conn, $_POST['old_pass']));
+    $new_pass = md5(mysqli_real_escape_string($conn, $_POST['new_pass']));
+    $confirm_pass = md5(mysqli_real_escape_string($conn, $_POST['confirm_pass']));
+
+    if(empty($old_pass) || empty($new_pass) || empty($confirm_pass)) {
+        $message[] = 'Vui lòng điền đầy đủ thông tin.';
+    } else {
+        $result = mysqli_query($conn, "SELECT password FROM users WHERE id = '$user_id'");
+        if(mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+            $db_password = $row['password'];
+
+            if($db_password != $old_pass) {
+                $message[] = 'Mật khẩu cũ không đúng.';
+            } elseif($new_pass != $confirm_pass) {
+                $message[] = 'Mật khẩu mới và xác nhận mật khẩu không khớp.';
+            } else {
+                $update_query = mysqli_query($conn, "UPDATE users SET password = '$new_pass' WHERE id = '$user_id'");
+                if($update_query) {
+                    $message[] = 'Cập nhật mật khẩu thành công!';
+                } else {
+                    $message[] = 'Cập nhật thất bại. Vui lòng thử lại sau.';
                 }
             }
-      }
+        } else {
+            $message[] = 'Không tìm thấy người dùng.';
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,115 +48,105 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>ĐỔI MẬT KHẨU</title>
-   <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
-   <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
-   
+   <link rel="apple-touch-icon" href="../public/img/logotron.png">
+   <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png">
    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
-      *{
-         font-family: 'Roboto', sans-serif;
-         margin:0; padding:0;
-         box-sizing: border-box;
-         outline: none; border:none;
-         text-decoration: none;
-      }
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
 
-      .form-container{
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding:20px;
-            padding-bottom: 60px;
-            background: #eee;
-      }
+.form-container {
+    width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
 
-      .form-container form{
-            padding:20px;
-            border-radius: 5px;
-            box-shadow: 0 5px 10px rgba(0,0,0,.1);
-            background: #fff;
-            text-align: center;
-            width: 500px;
-      }
+h3 {
+    text-align: center;
+    color: #333;
+}
 
-      .form-container form h3{
-            font-size: 30px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            color:#333;
-      }
+.box {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-      .form-container form input{
-            width: 100%;
-            padding:10px 15px;
-            font-size: 17px;
-            margin:8px 0;
-            background: #eee;
-            border-radius: 5px;
-      }
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-      .form-container form .error-msg{
-         margin:10px 0;
-         display: block;
-         background: #fff;
-         color:black;
-         border-radius: 5px;
-         font-size: 20px;
-         padding:10px;
-      }
+button:hover {
+    background-color: #45a049;
+}
 
-      button a{
-            color: black;
-      }
+.error-msg {
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
 
-      button a:hover{
-            color: #ECE5C7;
-      }
+/* Responsive */
+@media (max-width: 600px) {
+    .form-container {
+        width: 90%;
+    }
+}
+a {
+      padding: 10px 0 0 0 ;
+    color: #4CAF50; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân mặc định */
+    border-bottom: 2px solid transparent; /* Đường viền dưới */
+    transition: border-color 0.3s ease; /* Hiệu ứng chuyển đổi màu đường viền */
+    display: inline-block; /* Để có thể căn giữa */
+}
 
-      button{
-            display: inline-block;
-            background-color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-      }
+a:hover {
+    border-color: #4CAF50; /* Màu đường viền khi di chuột qua */
+}
 
-      button:hover{
-            background-color: #116A7B;
-      }
+/* Căn giữa */
+a {
+    text-align: center;
+    width: 100%;
+}
+
 
    </style>
-   
-
 </head>
-<body>
-   
+<body>  
 <div class="form-container">
-
    <form action="" method="post">
       <h3>Đổi mật khẩu</h3>
       <?php
          if(isset($message)){
-            foreach($message as $message){
-               echo '<span  class="error-msg">'.$message.'</span>';
+            foreach($message as $msg){
+               echo '<span  class="error-msg">'.$msg.'</span>';
             };
          };
       ?>
-      <input type="hidden" name="old_pass" value="<?php // echo $fetch['password']; ?>">
-      <input type="password" name="update_pass" placeholder="Nhập mật khẩu cũ" class="box">
+      <input type="password" name="old_pass" placeholder="Nhập mật khẩu cũ" class="box">
       <input type="password" name="new_pass" placeholder="Nhập mật khẩu mới" class="box">
-      <input type="password" name="confirm_pass" placeholder="Nhập lại mật khẩu" class="box">
-      
-      <button name="update_pass"><a href="">Cập nhật</a></button>
+      <input type="password" name="confirm_pass" placeholder="Xác nhận mật khẩu mới" class="box">
+      <button type="submit" name="update_pass">Cập nhật</button>
+      <a href="../index.php">Trang chủ</a>
    </form>
-
 </div>
-
 </body>
 </html>
-
