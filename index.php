@@ -53,6 +53,10 @@
             case 'update_pass':
                 header('location: view/updatepass.php');
                 break;
+            case 'giohang':
+                include "view/giohang.php";
+                break;
+
             default:
                 include "view/home.php";
                 break;

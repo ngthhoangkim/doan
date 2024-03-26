@@ -112,7 +112,6 @@
 
 <?php
     @include '../../model/connectdb.php';
-    // $conn = mysqli_connect("localhost","root","","dbtrangsuc");
     if (isset($_GET['edit_id'])) {
         $editId = $_GET['edit_id'];
         $select = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$editId'");
@@ -126,27 +125,30 @@
             $update_qty = mysqli_real_escape_string($conn, $_POST['new_qty']);
             $update_type = mysqli_real_escape_string($conn, $_POST['new_type']);
 
-            // Xóa ảnh cũ
-            $old_image_path = '../update_img/' . $fetch['image'];
-            if (file_exists($old_image_path)) {
-                unlink($old_image_path);
-            }
-
-            // Cập nhật thông tin sản phẩm
-            mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price', method = '$update_method', qty = '$update_qty', id_type = $update_type WHERE id = '$editId'") or die('Cập nhật thất bại');
-
-            // Cập nhật ảnh mới
             if (!empty($_FILES['new_img']['name'])) {
-                $update_image = $_FILES['new_img']['name'];
-                $update_image_tmp_name = $_FILES['new_img']['tmp_name'];
-                $update_image_folder = '../update_img/' . $update_image;
+                // Xóa ảnh cũ
+                $old_image_path = '../update_img/' . $fetch['image'];
+                if (file_exists($old_image_path)) {
+                    unlink($old_image_path);
+                }
 
-                move_uploaded_file($update_image_tmp_name, $update_image_folder);
-                mysqli_query($conn, "UPDATE `products` SET image = '$update_image' WHERE id = '$editId'") or die('Cập nhật thất bại');
-            }
-            echo "Cập nhật sản phẩm thành công";
+                
+
+                // Cập nhật ảnh mới
+                if (!empty($_FILES['new_img']['name'])) {
+                    $update_image = $_FILES['new_img']['name'];
+                    $update_image_tmp_name = $_FILES['new_img']['tmp_name'];
+                    $update_image_folder = '../update_img/' . $update_image;
+
+                    move_uploaded_file($update_image_tmp_name, $update_image_folder);
+                    mysqli_query($conn, "UPDATE `products` SET image = '$update_image' WHERE id = '$editId'") or die('Cập nhật thất bại');
+                }
         }
+        // Cập nhật thông tin sản phẩm
+        mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price', method = '$update_method', qty = '$update_qty', id_type = $update_type WHERE id = '$editId'") or die('Cập nhật thất bại');
+        echo "Cập nhật sản phẩm thành công";
     }
+}
 ?>
 <main>
     <button class="back_bnt" onclick="window.location.href = '../../admin/index.php?act=view_product';">Quay trở về</button>

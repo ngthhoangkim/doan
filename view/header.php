@@ -16,27 +16,11 @@
     <link rel="stylesheet" href="public/css/main.css">
 
 
+
     <!-- font chữ: Roboto -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="public/css/fontawesome.min.css">
-    
-    <!--
-    <style>
-        body {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            z-index: 1000;
-            /* Đảm bảo header hiển thị trên tất cả các phần tử khác */
-            min-height: auto;
-            scroll-behavior: smooth;
-
-        }
-    </style>
-    -->
 </head>
 
 <body>
@@ -104,7 +88,7 @@
                         data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="view/giohang.php">
+                    <a class="nav-icon position-relative text-decoration-none" href="index.php?act=giohang">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> -->
                     </a>
@@ -139,8 +123,8 @@
             </div>
             <form action="" method="get" class="modal-content modal-body border-0 p-0">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
+                    <input type="text" class="form-control" id="inputModalSearch" name="search" placeholder="Search ...">
+                    <button type="submit" name="submit" class="input-group-text bg-success text-light">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
