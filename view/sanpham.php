@@ -20,7 +20,7 @@
          background-color: #f5f5f5;
          }
          .main {
-         max-width: 80%;
+         max-width: 90%;
          margin: 0 auto;
          padding: 20px;
          display: flex;
@@ -32,6 +32,7 @@
          padding: 20px;
          margin-right: 20px;
          width: 300px;
+         height:400px;
          }
          .sidebar h3 {
          font-size: 18px;
@@ -105,7 +106,7 @@
          margin-left: 10px; /* Add margin to separate buttons */
          }
          .product_info form input[type="submit"]:hover {
-         background-color: #45a049; /* Darker green color on hover */
+            background-color: #45a049; /* Darker green color on hover */
          }
          @media (max-width: 768px) {
          .main {
@@ -146,6 +147,10 @@
                       $id_type = $_GET['id_type'];
                       // Truy vấn SQL để lấy tất cả sản phẩm theo id_type
                       $sql = "SELECT * FROM products WHERE id_type='$id_type'";
+                    } else {
+                        // Nếu không có id_type, chỉ lấy một sản phẩm ngẫu nhiên
+                        $sql = "SELECT * FROM products ";
+                    }
                       $result = $conn->query($sql);
                   
                       if ($result->num_rows > 0) {
@@ -156,8 +161,8 @@
                               echo '<img src="admin/update_img/' . $row_pro['image'] . '">';
                               echo '<div class="product_info">';
                               echo '<p class="name_product">';
-                  if (strlen($row_pro['name']) > 20) {
-                  echo substr($row_pro['name'], 0, 20) . '...';
+                  if (strlen($row_pro['name']) > 15) {
+                  echo substr($row_pro['name'], 0, 15) . '...';
                   } else {
                   echo $row_pro['name'];
                   }
@@ -170,47 +175,13 @@
                               echo '</form>';
                               echo '</div>';
                               echo '</a>';
-                              echo '</li>';
-                          }
-                      } else {
-                          echo 'Không có sản phẩm cho loại này';
-                      }
-                  } else {
-                      // Truy vấn SQL để lấy một sản phẩm ngẫu nhiên có id_type
-                      $sql = "SELECT * FROM products WHERE id_type IS NOT NULL ORDER BY RAND() LIMIT 12";
-                      $result = $conn->query($sql);
-                  
-                      if ($result->num_rows > 0) {
-                          // Hiển thị một sản phẩm ngẫu nhiên có id_type
-                          while ($row_pro = $result->fetch_assoc()) {
-                              echo '<li>';
-                              echo '<a href="index.php?act=chitietsp&id=' . $row_pro['id'] . '">';
-                              echo '<img src="admin/update_img/' . $row_pro['image'] . '">';
-                              echo '<div class="product_info">';
-                              echo '<p class="name_product">';
-                  if (strlen($row_pro['name']) > 20) {
-                  echo substr($row_pro['name'], 0, 20) . '...';
-                  } else {
-                  echo $row_pro['name'];
-                  }
-                  echo '</p>';
-                  
-                              echo '<p class="price_product">' . number_format($row_pro['price'], 0, ',', '.') . ' đ</p>';
-                              echo '<form action="index.php?act=giohang&id" method="post">';
-                              echo '<input type="hidden" name="product_id" value="' . $row_pro['id'] . '">';
-                              echo '<input type="submit" name="add_to_cart" value="Thêm vào giỏ hàng">';
-                              echo '</form>';
-                              echo '</div>';
-                              echo '</a>';
-                              echo '</li>';
-                          }
-                      } else {
-                          echo 'Không có sản phẩm ngẫu nhiên';
-                      }
-                  }
-                  ?>
-            </ul>
-         </div>
-      </div>
-   </body>
-</html>
+                              echo '</li>';}
+                            } else {
+                                echo 'Không có sản phẩm cho loại này';
+                            }
+                        ?>
+                  </ul>
+               </div>
+            </div>
+         </body>
+      </html>
