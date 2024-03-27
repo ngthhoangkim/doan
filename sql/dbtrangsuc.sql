@@ -161,7 +161,7 @@ INSERT INTO `type` (`id`, `name_type`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(20) NOT NULL,
+  `userId` int(20) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `phone` int(10) NOT NULL,
@@ -169,6 +169,7 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `user_type` varchar(20) NOT NULL DEFAULT 'user',
   `image` varchar(100) NOT NULL
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

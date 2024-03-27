@@ -1,27 +1,33 @@
 <?php
+    @session_start(); // Khai báo session_start()
+
+    // Bao gồm file kết nối đến cơ sở dữ liệu
+    @include '../model/connectdb.php';
+    
+
     // Kiểm tra xem người dùng đã đăng nhập chưa
     $isLoggedIn = isset($_SESSION['username']);
 
-// Nếu người dùng chưa đăng nhập và không phải trang đăng nhập
-if (!$isLoggedIn && basename($_SERVER['PHP_SELF']) != 'login.php') {
-    // Chuyển hướng đến trang đăng nhập
-    header('Location: http://localhost/doan/login/login.php');
-    exit; // Dừng việc thực thi mã PHP tiếp theo
-}
-
-// Cập nhật lại trạng thái đăng nhập sau khi người dùng đăng nhập thành công
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Kiểm tra username và password trong cơ sở dữ liệu
-    if ($username == 'username' && $password == 'password') {
-        $_SESSION['isLoggedIn'] = true;
-        // Chuyển hướng về trang thanh toán sau khi đăng nhập thành công
-        header('Location: http://localhost/doan/thanhtoan.php');
-        exit;
+    // Nếu người dùng chưa đăng nhập và không phải trang đăng nhập
+    if (!$isLoggedIn && basename($_SERVER['PHP_SELF']) != 'login.php') {
+        // Chuyển hướng đến trang đăng nhập
+        header('Location: http://localhost/doan/login/login.php');
+        exit; // Dừng việc thực thi mã PHP tiếp theo
     }
-}
+
+    // Cập nhật lại trạng thái đăng nhập sau khi người dùng đăng nhập thành công
+    if (isset($_POST['login'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Kiểm tra username và password trong cơ sở dữ liệu
+        if ($username == 'username' && $password == 'pass') {
+            $_SESSION['isLoggedIn'] = true;
+            // Chuyển hướng về trang thanh toán sau khi đăng nhập thành công
+            header('Location: http://localhost/doan/index.php?act=thanhtoan.php');
+            exit;
+        }
+    }
 
 ?>
 
@@ -68,16 +74,6 @@ if (isset($_POST['login'])) {
             scroll-behavior: smooth;
 
         }
-
-
-        /*        .background-image {
-            background-image: url('../public/img/thanhtoan.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            color: white;           Màu văn bản trên ảnh 
-            height: 100%;           Đảm bảo chiều cao của phần tử background-image là 100% của trình duyệt
-        }   */
 
         .overlay-content {
             text-align: center;
@@ -215,34 +211,89 @@ if (isset($_POST['login'])) {
 
 <body>
     <main>
+        <?php
+            // Lấy giá trị 'id' từ biến session hoặc từ dữ liệu đầu vào của người dùng
+            $userId = isset($_SESSION['userId']) ? intval($_SESSION['userId']) : 0;
+
+            if ($userId > 0) {
+                // Truy vấn để lấy thông tin từ bảng 'users' dựa trên 'id'
+                $query = "SELECT * FROM users WHERE userId = $userId";
+                $result = mysqli_query($conn, $query);
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $user = mysqli_fetch_assoc($result);
+            
+                    // Lấy thông tin sản phẩm từ giỏ hàng của người dùng
+                    $query = "SELECT cart.*, products.name AS name_products FROM cart INNER JOIN products ON cart.product_id = products.id WHERE cart.user_id = $userId";
+                    $result = mysqli_query($conn, $query);
+                    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
+                    // Xử lý thông tin sản phẩm ở đây
+                } else {
+                    echo "Không tìm thấy người dùng với ID: $userId";
+                }
+            } else {
+                echo "ID người dùng không hợp lệ!";
+            }
+            
+
+        ?>
         <div class="background-image">
             <div class="overlay-content">
                 <h1>Checkout - Luxury Store</h1>
                 <form method="POST">
                     <div class="header_checkout">
+
+                        <!-- THÔNG TIN NGƯỜI DÙNG -->
                         <div class="info_user">
                             <div class="introduce_info" style="color:black">
                                 <h2>Thông tin của bạn</h2>
                             </div>
-                            <form>
+
+                            <?php
+                            // Xử lý dữ liệu biểu mẫu khi người dùng gửi
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                // Kiểm tra và xử lý dữ liệu gửi từ biểu mẫu
+                                if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['sdt']) && isset($_POST['address'])) {
+                                    $name = $_POST['name'];
+                                    $email = $_POST['email'];
+                                    $sdt = $_POST['sdt'];
+                                    $address = $_POST['address'];
+
+                                    // Cập nhật thông tin vào biến $users
+                                    $users = array(
+                                        'username' => $name,
+                                        'email' => $email,
+                                        'sdt' => $sdt,
+                                        'address' => $address
+                                    );
+                                }
+                            }
+
+                            // Hiển thị form với thông tin nhập từ biến $users
+                            ?>
+                            <form method="POST">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Họ và tên</label>
-                                    <input name="name" type="text" class="form-control" placeholder="Nhập tên của bạn"
+                                    <input name="name" value="<?php echo $users['username'] ?>" type="text" 
+                                        class="form-control" placeholder="Nhập tên của bạn"
                                         required="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Email</label>
-                                    <input name="email" type="text" class="form-control"
+                                    <input name="email" value="<?php echo $users['email'] ?>" 
+                                        type="text" class="form-control"
                                         placeholder="Nhập email của bạn" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Số điện thoại</label>
-                                    <input name="sdt" type="text" class="form-control"
+                                    <input name="sdt" value="<?php echo $users['sdt'] ?>" type="text" 
+                                        class="form-control"
                                         placeholder="Nhập số điện thoại của bạn" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Địa chỉ nhận hàng</label>
-                                    <input name="address" type="text" class="form-control"
+                                    <input name="address" value="<?php echo $users['address'] ?>" 
+                                        type="text" class="form-control"
                                         placeholder="Nhập địa chỉ của bạn" required="required">
                                 </div>
                                 <div class="form-group">
@@ -252,6 +303,8 @@ if (isset($_POST['login'])) {
                                 </div>
                             </form>
                         </div>
+                        
+                        <!-- THÔNG TIN ĐƠN HÀNG -->
                         <div class="info_order" style="color: black">
                             <div class="introduce_order">
                                 <h2>Thông tin đơn hàng</h2>
@@ -265,15 +318,36 @@ if (isset($_POST['login'])) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="name_product"></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <?php 
+                                        // Lấy thông tin giỏ hàng từ session
+                                        $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+                                        foreach ($cart as $key => $values) : ?>
+                                            <tr>
+                                                <td class="name_product"><?php echo $values['name'] ?></td>
+                                                <td><?php echo $values['qty'] ?></td>
+                                                <td><?php echo number_format($values['sale_price'] * $values['qty'] * 1000) ?>,000đ</td>
+                                            </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            
+                            <!--    Chức năng tính tổng giá tiền   -->
+                            <?php
+                                // Khởi tạo biến lưu trữ tổng số tiền đơn hàng
+                                $totalPrice = 0;
+                                function total_price($cart)
+                                {
+                                    $total = 0;
+                                    foreach ($cart as $item) {
+                                        $total += $item['sale_price'] * $item['qty'];
+                                    }
+                                    return $total;
+                                }
+                            ?>
+
                             <div class="total_product">
-                                <p>Tổng tiền</p>
+                                <p>Tổng tiền: <?php echo number_format(total_price($cart) * 1000) ?>,000đ</p>
                             </div>
                             <div>
                                 <button class="submit_checkout">Đặt hàng</button>

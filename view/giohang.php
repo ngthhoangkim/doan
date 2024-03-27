@@ -336,28 +336,6 @@
 			background-color: #45a049; /* Màu nền khi di chuột qua */
 			color: white; /* Màu chữ khi di chuột qua */
 		}
-		
-
-		/* Fix thông báo đăng nhập để thực hiện thanh toán 
-		#loginPrompt {
-			display: none;
-			text-align: center;
-			margin-top: 10px;
-		}
-
-		#loginPrompt a {
-			display: inline-block;
-			background-color: #4CAF50;
-			color: white;
-			padding: 10px 20px;
-			text-decoration: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		#loginPrompt a:hover {
-			background-color: #45a049;
-		}	*/
 
     </style>
 </head>
@@ -455,7 +433,7 @@
 			
 			<!-- Đặt hàng -->
 			<div class="checkout">
-				<button onclick="checkLogin()" class="payment-btn"><a href="../index.php?act=thanhtoan">Thanh toán ngay</a></button>
+				<button onclick="checkLogin()" class="payment-btn"><a href="http://localhost/doan/index.php?act=thanhtoan">Thanh toán ngay</a></button>
 			</div>
 
 			<script>
@@ -465,7 +443,7 @@
 
 					// Nếu người dùng đã đăng nhập, chuyển hướng đến trang thanh toán
 					if (isLoggedIn) {
-						window.location.href = 'http://localhost/doan/login/login.php'; // Thay đổi đường dẫn thanh toán nếu cần
+						window.location.href = 'http://localhost/doan/index.php?act=thanhtoan'; // Thay đổi đường dẫn thanh toán nếu cần
 					} else {
 						// Nếu người dùng chưa đăng nhập, hiển thị thông báo và nút OK
 						var confirmation = confirm("Nếu bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện thanh toán!");
@@ -475,12 +453,7 @@
 					}
 				}
 			</script>
-
-<!--			<div id="loginPrompt" style="display: none;">
-				<p>Nếu bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện thanh toán!</p>
-				<a href="http://localhost/doan/login/login.php">OK</a>
-			</div>
--->
+			
         </section>
     </main>
 </body>
