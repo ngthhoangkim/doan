@@ -1,187 +1,158 @@
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
+.container {
+    margin: 30px auto
+}
+.container .product-item {
+    min-height: 450px;
+    border: none;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0
+}
+
+.container .product-item .product {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.container .product-item .product img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .product-item .product .icons .icon {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease;
+    transform: rotate(180deg);
+    cursor: pointer
+}
+
+.container .product-item .product .icons .icon:hover {
+    background-color: #10c775;
+    color: #fff
+}
+
+.container .product-item .product .icons .icon:nth-last-of-type(3) {
+    transition-delay: 0.2s
+}
+
+.container .product-item .product .icons .icon:nth-last-of-type(2) {
+    transition-delay: 0.15s
+}
+
+.container .product-item .product .icons .icon:nth-last-of-type(1) {
+    transition-delay: 0.1s
+}
+
+.container .product-item:hover .product .icons .icon {
+    transform: translateY(-60px)
+}
+
+.container .product-item .tag {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 500;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    padding: 0 0.4rem;
+}
+
+.container .product-item .title {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px
+}
+
+.container .product-item .fa-star {
+    font-size: 0.65rem;
+    color: #ff0000;
+}
+
+.container .product-item .price {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.bg-green {
+    background-color: #208f20 !important;
+    color: #fff;
+}
+
+.bg-black {
+    background-color: #1f1d1d;
+    color: #fff
+}
+
+.bg-red {
+    background-color: #bb3535;
+    color: #fff
+}
+</style>
+</head>
 <?php
-   // Bao gồm tệp kết nối CSDL
-   @include 'connectdb.php';
-   ?>
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Sản Phẩm</title>
-      <style>
-         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-         * {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-         font-family: 'Poppins', sans-serif;
-         }
-         body {
-         background-color: #f5f5f5;
-         }
-         .main {
-         max-width: 90%;
-         margin: 0 auto;
-         padding: 20px;
-         display: flex;
-         }
-         .sidebar {
-         background-color: #fff;
-         border-radius: 10px;
-         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-         padding: 20px;
-         margin-right: 20px;
-         width: 300px;
-         height:400px;
-         }
-         .sidebar h3 {
-         font-size: 18px;
-         font-weight: 600;
-         margin-bottom: 10px;
-         }
-         .sidebar ul {
-         list-style-type: none;
-         }
-         .sidebar ul li a {
-         display: block;
-         color: #333;
-         padding: 10px;
-         text-decoration: none;
-         border-radius: 5px;
-         transition: background-color 0.3s ease;
-         }
-         .sidebar ul li a:hover {
-         background-color: #f1f1f1;
-         }
-         .maincontent {
-         flex-grow: 1;
-         }
-         .product_list {
-         display: grid;
-         grid-template-columns: repeat(4, 1fr);
-         grid-gap: 20px;
-         }
-         .product_list li {
-         background-color: #fff;
-         border-radius: 10px;
-         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-         overflow: hidden;
-         transition: transform 0.3s ease;
-         }
-         .product_list li:hover {
-         transform: translateY(-5px);
-         }
-         .product_list li img {
-         width: 100%;
-         height: 200px;
-         object-fit: cover;
-         }
-         .product_info {
-         padding: 20px;
-         }
-         .product_info .name_product {
-         font-size: 16px;
-         font-weight: 600px;
-         margin-bottom: 10px;
-         text-align: left;
-         }
-         .product_info .price_product {
-         font-size: 14px;
-         color: #777;
-         margin-bottom: 10px;
-         text-align: left;
-         }
-         .product_info form {
-         display: flex;
-         justify-content: flex-end;
-         }
-         .product_info form input[type="submit"] {
-         background-color: #4CAF50; /* Green color */
-         color: white;
-         border: none;
-         padding: 10px 20px;
-         border-radius: 5px;
-         cursor: pointer;
-         transition: background-color 0.3s ease;
-         margin-left: 10px; /* Add margin to separate buttons */
-         }
-         .product_info form input[type="submit"]:hover {
-            background-color: #45a049; /* Darker green color on hover */
-         }
-         @media (max-width: 768px) {
-         .main {
-         flex-direction: column;
-         padding: 10px;
-         }
-         .sidebar {
-         width: 100%;
-         margin-right: 0;
-         margin-bottom: 20px;
-         }
-         .product_list {
-         grid-template-columns: repeat(2, 1fr);
-         }
-         }
-         .sidebar ul li a,
-         .product_list li a {
-         text-decoration: none;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="main">
-         <div class="sidebar">
-            <h3>Danh Mục Sản Phẩm</h3>
-            <ul>
-               <li><a href="index.php?act=sanpham&id_type=5">Nhẫn</a></li>
-               <li><a href="index.php?act=sanpham&id_type=6">Dây chuyền</a></li>
-               <li><a href="index.php?act=sanpham&id_type=7">Vòng tay</a></li>
-               <li><a href="index.php?act=sanpham&id_type=8">Khuyên tai</a></li>
-            </ul>
-         </div>
-         <div class="maincontent">
-            <ul class="product_list">
-               <?php
-                  if (isset($_GET['act']) && $_GET['act'] == 'sanpham' && isset($_GET['id_type'])) {
-                      // Lấy giá trị id_type từ URL
-                      $id_type = $_GET['id_type'];
-                      // Truy vấn SQL để lấy tất cả sản phẩm theo id_type
-                      $sql = "SELECT * FROM products WHERE id_type='$id_type'";
-                    } else {
-                        // Nếu không có id_type, chỉ lấy một sản phẩm ngẫu nhiên
-                        $sql = "SELECT * FROM products ";
-                    }
-                      $result = $conn->query($sql);
-                  
-                      if ($result->num_rows > 0) {
-                          // Hiển thị tất cả sản phẩm theo id_type
-                          while ($row_pro = $result->fetch_assoc()) {
-                              echo '<li>';
-                              echo '<a href="index.php?act=chitietsp&id=' . $row_pro['id'] . '">';
-                              echo '<img src="admin/update_img/' . $row_pro['image'] . '">';
-                              echo '<div class="product_info">';
-                              echo '<p class="name_product">';
-                  if (strlen($row_pro['name']) > 15) {
-                  echo substr($row_pro['name'], 0, 15) . '...';
-                  } else {
-                  echo $row_pro['name'];
-                  }
-                  echo '</p>';
-                  
-                              echo '<p class="price_product">' . number_format($row_pro['price'], 0, ',', '.') . ' đ</p>';
-                              echo '<form action="index.php?act=giohang&id" method="post">';
-                              echo '<input type="hidden" name="product_id" value="' . $row_pro['id'] . '">';
-                              echo '<input type="submit" name="add_to_cart" value="Thêm vào giỏ hàng">';
-                              echo '</form>';
-                              echo '</div>';
-                              echo '</a>';
-                              echo '</li>';}
-                            } else {
-                                echo 'Không có sản phẩm cho loại này';
-                            }
-                        ?>
-                  </ul>
-               </div>
+    @include '../model/connectdb.php';
+
+    // Initialize $product_data array
+    $product_data = array();
+
+    //truy vấn
+    $sql = "SELECT products.*, type.name_type FROM products INNER JOIN type ON products.id_type = type.id";
+    $result = mysqli_query($conn, $sql);
+    //in ra 
+    while ($row = mysqli_fetch_assoc($result)) {
+        $product_data[] = array(
+            'id' => $row['id'],
+            'name_type' => $row['name_type'],
+            'image' => 'admin/update_img/' . $row['image'],
+            'name' => $row['name'],
+            'price' => $row['price']
+        );
+    }
+?>
+<body>
+    <div class="container bg-white">
+        <h2>Tất cả sản phẩm</h2>
+        <form action="" method="post">
+            <div class="row">
+               <?php foreach ($product_data as $product) { ?>
+                     <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                        <div class="product"> <img src="<?php echo $product['image']; ?>" alt="">
+                           <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+                              <li class="icon"><a href="index.php?act=chitietsp&id=<?php echo $product['id'];?>"><span class="fas fa-expand-arrows-alt"></span></a></li>
+                              <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                           </ul>
+                        </div>
+                        <div class="title pt-4 pb-1"><?php echo $product['name']; ?></div>
+                        <div class="price"><?php echo $product['price']; ?></div>
+                     </div>
+               <?php } ?>
             </div>
-         </body>
-      </html>
+            <div>
+               <input type="hidden" name="product_id" value="<?php echo $product['id'];?>"></input>
+               <input type="hidden" name="img_product" value="<?php echo $product['image'];  ?>"></input>
+               <input type="hidden" name="type_product" value="<?php echo $product['name_type'];  ?>"></input>
+               <input type="hidden" name="price_procduct" value="<?php echo $product['price']; ?>"></input>
+               <input type="hidden" name="name_product" value="<?php echo $product['name'];  ?>"></input>
+            </div>
+        </form>
+    </div>
+</body>
+
+
