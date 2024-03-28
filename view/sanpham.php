@@ -136,7 +136,7 @@
                         <div class="product"> <img src="<?php echo $product['image']; ?>" alt="">
                            <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                               <li class="icon"><a href="index.php?act=chitietsp&id=<?php echo $product['id'];?>"><span class="fas fa-expand-arrows-alt"></span></a></li>
-                              <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                              <li class="icon"><a href="index.php?act=giohang&id=<?php echo $product['id'];?>"><span class="fas fa-shopping-bag"></span></a></li>
                            </ul>
                         </div>
                         <div class="title pt-4 pb-1"><?php echo $product['name']; ?></div>
