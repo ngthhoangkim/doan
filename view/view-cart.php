@@ -1,15 +1,3 @@
-<?php
-session_start(); // Start the session if it's not already started
-
-// Initialize $cart variable properly
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-// echo "<pre>";
-// print_r($cart);
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,37 +63,83 @@ a.mot:hover {
 
     </style>
 </head>
+<?php
+session_start();
+if (!isset($_SESSION['id_user'])) {
+    header('location: ../login/login.php');
+    exit;
+}
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+};
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+// Xóa sản phẩm khỏi giỏ hàng
+if (isset($_GET['remove'])) {
+    $id = $_GET['remove'];
+    unset($cart[$id]);
+    $_SESSION['cart'] = $cart;
+}
+
+// Cập nhật số lượng sản phẩm
+if (isset($_POST['update'])) {
+    $quantities = $_POST['quantity'];
+    foreach ($cart as $id => $product) {
+        if (isset($quantities[$id])) {
+            $cart[$id]['quantity'] = $quantities[$id];
+        }
+    }
+    $_SESSION['cart'] = $cart;
+}
+?>
 <body>
-
-<div class="panel-body">
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Ảnh sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($cart as $key => $value): ?>
-        <tr>
-            <td><?php echo $key ?></td>
-            <td><img src="../admin/update_img/<?php echo $value['image'] ?>" alt="" width="100px"></td>
-            <td><?php echo $value['name'] ?></td>
-            <td>
-                <input type="text" name="quantity[]" value="<?php echo $value['quantity'] ?>">
-                <button type="submit">Cập nhật</button>
-            </td>
-            <td><?php echo $value['price'] ?></td>
-            <td><a href="" class= 'mot'>xóa</a></td>
-        </tr>
-    <?php endforeach ?>
-        </tbody>
-    </table>
-</div>
-
+    <div class="panel-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $total = 0;
+                foreach ($cart as $id => $product):
+                    $subtotal = $product['price'] * $product['quantity'];
+                    $total += $subtotal;
+                    ?>
+                    <tr>
+                        <td><?php echo $id; ?></td>
+                        <td><img src="../admin/update_img/<?php echo $product['image']; ?>" alt="" width="100px"></td>
+                        <td><?php echo $product['name']; ?></td>
+                        <td>
+                            <form method="post">
+                                <input type="number" name="quantity[<?php echo $id; ?>]" value="<?php echo $product['quantity']; ?>" min="1">
+                                <button type="submit" name="update">Cập nhật</button>
+                            </form>
+                        </td>
+                        <td><?php echo number_format($product['price'], 0, ',', '.'); ?> đ</td>
+                        <td><?php echo number_format($subtotal, 0, ',', '.'); ?> đ</td>
+                        <td><a href="?remove=<?php echo $id; ?>" class="mot">Xóa</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="5">Tổng cộng</th>
+                    <th><?php echo number_format($total, 0, ',', '.'); ?> đ</th>
+                    <th><a href="#" class="btn btn-primary">Thanh toán</a></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </body>
+</html>
+
 </html>
