@@ -8,6 +8,10 @@
    
     if(isset($_GET['act'])){
         switch ($_GET['act']) {
+            case 'search':
+                include "view/search.php";
+                break;
+
             case 'about':
                 include "view/about.php";
                 break;
@@ -53,6 +57,7 @@
             case 'update_pass':
                 header('location: view/updatepass.php');
                 break;
+                
             case 'giohang':
                 include "view/view-cart.php";
                 break;
