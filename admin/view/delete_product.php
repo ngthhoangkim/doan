@@ -10,7 +10,7 @@
             echo "<html><a href='../index.php?act=view_product'>Quay lại</a></html>";
         } else {
             echo "Error updating record: " . $conn->error;
-    }
+        }
     $conn->close();
     }
 ?>

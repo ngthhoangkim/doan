@@ -54,7 +54,7 @@
                 header('location: view/updatepass.php');
                 break;
             case 'giohang':
-                include "view/cart.php";
+                include "view/view-cart.php";
                 break;
 
             default:
