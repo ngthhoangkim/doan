@@ -196,24 +196,31 @@ if (isset($_GET['product_name'])) {
                         <?php if (isset($resultSearch) && $resultSearch->num_rows > 0): ?>
                             <?php foreach ($resultSearch as $info_product): ?>
                                 <div class="content_item">
+                                    <?php
+                                        $statusArray = array();
+                                        $statusArray['status'] = 'active';
+                                    ?>
                                     <div class="in_stock">
-                                        <?php if ($info_product['status'] == 1) { ?>
+                                        <?php if (isset($info_product['status']) && $info_product['status'] == 'active'): ?>
                                             <i class="far fa-check-circle"></i>
                                             <p>In stock</p>
-                                        <?php } else { ?>
+                                        <?php else: ?>
                                             <i style="color: red;" class="fas fa-times-circle"></i>
                                             <p style="color: red;">Sold out</p>
-                                        <?php } ?>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="img_product">
-                                        <a href="product_detail.php?id=<?php echo $info_product['id'] ?>"><img
-                                                src="./img/<?php echo $info_product['image'] ?>" alt=""></a>
+                                        <a href="product_detail.php?id=<?php echo $info_product['id'] ?>">
+                                            <img src="../admin/update_img/<?php echo $info_product['image'] ?>" alt="">
+                                        </a>
                                     </div>
                                     <div class="click_order">
-                                        <p><a href="product_detail.php?id=<?php echo $info_product['id'] ?>">Click để xem chi
-                                                tiết</a></p>
-                                        <button><a style="text-decoration: none; color:white;"
-                                                href="./cart.php?id=<?php echo $info_product['id'] ?>">Đặt hàng</a></button>
+                                        <p>
+                                            <a href="chitietsp.php?id=<?php echo $info_product['id'] ?>">Click để xem chi tiết</a>
+                                        </p>
+                                        <button>
+                                            <a style="text-decoration: none; color:white;" href="./view-cart.php?id=<?php echo $info_product['id'] ?>">Đặt hàng</a>
+                                        </button>
                                     </div>
                                     <div class="describe_product">
                                         <p>
@@ -224,9 +231,11 @@ if (isset($_GET['product_name'])) {
                                         <p style="">
                                             <?php echo $info_product['price'] ?>.000₫
                                         </p>
-                                        <h2>
-                                            <?php echo $info_product['sale_price'] ?>.000₫
-                                        </h2>
+                                        <?php if (isset($info_product['sale_price'])): ?>
+                                            <h2>
+                                                <?php echo $info_product['sale_price'] ?>.000₫
+                                            </h2>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
