@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 29, 2024 lúc 04:31 AM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 30, 2024 at 09:46 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,69 +18,55 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dbtrangsuc`
+-- Database: `dbtrangsuc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
   `id` int(20) NOT NULL,
   `user_id` int(20) NOT NULL,
   `product_id` int(20) NOT NULL,
-  `price` varchar(10) NOT NULL,
-  `qty` varchar(2) NOT NULL DEFAULT '1'
+  `price` int(100) NOT NULL,
+  `qty` int(100) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `cart`
+-- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `price`, `qty`) VALUES
-(0, 6, 6, '390000', '1');
+(53, 2, 6, 390000, 3),
+(54, 2, 9, 450000, 2);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `lienhe`
---
-
-CREATE TABLE `lienhe` (
-  `id` int(255) NOT NULL,
-  `ten` varchar(250) NOT NULL,
-  `gmail` varchar(255) NOT NULL,
-  `sodt` int(10) NOT NULL,
-  `noidung` varchar(10000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
-  `id` int(20) NOT NULL,
-  `user_id` int(20) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `number` varchar(10) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `address` varchar(200) NOT NULL,
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `method` varchar(50) NOT NULL,
-  `product_id` int(20) NOT NULL,
-  `price` varchar(10) NOT NULL,
-  `qty` varchar(2) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(50) NOT NULL DEFAULT 'in progress'
+  `address` varchar(500) NOT NULL,
+  `total_products` varchar(1000) NOT NULL,
+  `total_price` int(100) NOT NULL,
+  `placed_on` varchar(50) NOT NULL,
+  `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -94,7 +80,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `qty`, `price`, `method`, `image`, `id_type`) VALUES
@@ -156,7 +142,7 @@ INSERT INTO `products` (`id`, `name`, `qty`, `price`, `method`, `image`, `id_typ
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `type`
+-- Table structure for table `type`
 --
 
 CREATE TABLE `type` (
@@ -165,7 +151,7 @@ CREATE TABLE `type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `type`
+-- Dumping data for table `type`
 --
 
 INSERT INTO `type` (`id`, `name_type`) VALUES
@@ -177,7 +163,7 @@ INSERT INTO `type` (`id`, `name_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -192,19 +178,21 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `address`, `password`, `user_type`, `image`) VALUES
 (1, 'ADMIN', 'admin@gmail.com', 0, '', '21232f297a57a5a743894a0e4a801fc3', 'admin', ''),
-(6, 'nguyễn văn sơn', 'nguyenson79v79@gmail.com', 0, '', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '');
+(2, 'Test', 'test@gmail.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', ''),
+(4, 'Hoàng Kim', 'kim@gmail.com', 123456789, 'Hồ Chí Minh ', 'fb1eaf2bd9f2a7013602be235c305e7a', 'user', ''),
+(5, 'Kim', 'nguyenthihoangkim07022004@gmail.com', 0, '', '2f2fbbd3c3f067f8142349cbdfee4d3a', 'user', '');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
@@ -213,86 +201,77 @@ ALTER TABLE `cart`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Chỉ mục cho bảng `lienhe`
+-- Indexes for table `orders`
 --
-ALTER TABLE `lienhe`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`,`product_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Chỉ mục cho bảng `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_typle` (`id_type`);
 
 --
--- Chỉ mục cho bảng `type`
+-- Indexes for table `type`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `lienhe`
+-- AUTO_INCREMENT for table `cart`
 --
-ALTER TABLE `lienhe`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `cart`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT cho bảng `products`
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
--- AUTO_INCREMENT cho bảng `type`
+-- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `cart`
+-- Constraints for table `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id_type`) REFERENCES `type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

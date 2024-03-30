@@ -390,11 +390,7 @@
                             <?php echo $product['name']; ?>
                         </td>
                         <td>
-                            <form method="post">
-                                <input type="number" name="quantity[<?php echo $id; ?>]"
-                                    value="<?php echo $product['quantity']; ?>" min="1">
-                                <button type="submit" name="update">Cập nhật</button>
-                            </form>
+                            <?php echo $product['quantity']; ?>
                         </td>
                         <td>
                             <?php echo number_format($product['price'], 0, ',', '.'); ?> đ
