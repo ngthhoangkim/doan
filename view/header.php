@@ -82,8 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
-                        data-bs-target="#templatemo_search">
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <a href="view/search.php"><i class="fa fa-fw fa-search text-dark mr-2"></i></a>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="view/view-cart.php">
