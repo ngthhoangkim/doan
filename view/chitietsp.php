@@ -1,3 +1,13 @@
+<?php
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli("localhost", "root", "", "dbtrangsuc");
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
    <head>
@@ -120,7 +130,7 @@
                       if ($result->num_rows > 0) {
                           // Hiển thị thông tin chi tiết sản phẩm
                           $row_pro = $result->fetch_assoc();
-                          echo '<img src="admin/update_img/'.$row_pro['image'].'" alt="Hình ảnh sản phẩm"> ';
+                          echo '<img src="../admin/update_img/'.$row_pro['image'].'" alt="Hình ảnh sản phẩm"> ';
                       } else {
                           echo 'Không tìm thấy hình ảnh sản phẩm';
                       }

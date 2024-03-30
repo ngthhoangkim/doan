@@ -106,8 +106,8 @@ if (isset($_GET['product_name'])) {
 
             .content_item .img_product img {
                 position: relative;
-                width: 227px;
-                height: 227px;
+                width: 350x;
+                height: 400px;
             }
 
             .content_item .in_stock {
@@ -237,7 +237,7 @@ if (isset($_GET['product_name'])) {
                                             <?php endif; ?>
                                         </div>
                                         <div class="img_product">
-                                            <a href="product_detail.php?id=<?php echo $info_product['id'] ?>">
+                                            <a href="chitietsp.php?id=<?php echo $info_product['id'] ?>">
                                                 <img src="../admin/update_img/<?php echo $info_product['image'] ?>" alt="">
                                             </a>
                                         </div>
