@@ -30,7 +30,7 @@ if(isset($_GET['product_name'])) {
 }
 
 
-$limit = 50; // Số sản phẩm hiển thị trên một trang
+$limit = 20; // Số sản phẩm hiển thị trên một trang
 $cr_page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1; // Trang hiện tại
 
 if (isset($_GET['product_name'])) {
@@ -71,136 +71,165 @@ if (isset($_GET['product_name'])) {
 <html lang="vi">
     <head>
         <title>SEARCH</title>
-        <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+        <link rel="apple-touch-icon" href="../public/img/logotron.png">
         <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png">
-        <!--chỉnh logo trên tiêu đề  -->
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <style>
-            /*Xu ly content*/
-            .content_type,
-            .content_product,
-            .page_number {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            /* Sử dụng CSS Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Open Sans', sans-serif;
+            }
+
+            .content {
+                margin-top: 20px;
             }
 
             .content_frame {
-                margin-top: 20px;
-                height: auto;
-                background-color: white;
-                width: 100%;
                 max-width: 1200px;
-                /* Giới hạn chiều rộng tối đa */
-                margin-left: auto;
-                margin-right: auto;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .content_item {
-                border: 1px solid #e1e1e1;
-                padding: 20px 0;
-                position: relative;
-            }
-
-            .content_item .img_product img {
-                position: relative;
-                width: 350x;
-                height: 400px;
-            }
-
-            .content_item .in_stock {
-                display: flex;
-                color: green;
-                margin-left: 10px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
             }
 
             .content_card {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-                padding: 5px 5px;
+                gap: 20px;
             }
 
-            .describe_product,
-            .cost_product {
-                margin-top: 10px;
-                margin-left: 10px;
+            .content_item {
+                border: 1px solid #e1e1e1;
+                padding: 20px;
+                position: relative;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
-            .cost_product p {
-                color: gray;
-                font-size: 17px
+            .content_item:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transform: translateY(-5px);
+            }
+
+            .img_product img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .in_stock {
+                display: flex;
+                align-items: center;
+                color: green;
+                margin-bottom: 10px;
             }
 
             .click_order {
                 display: flex;
-                padding: 10px 5px;
-                background-color: rgb(123 95 95 / 80%);
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                background-color: rgba(123, 95, 95, 0.8);
+                color: #fff;
                 position: absolute;
-                top: 65%;
+                bottom: 0;
+                left: 0;
+                right: 0;
                 opacity: 0;
-            }
-
-            .click_order p a {
-                color: white;
-                text-decoration: none;
-            }
-
-            .click_order button {
-                margin-left: 15px;
-                background-color: rgb(6 85 166);
-                padding: 0px 9.5px;
-                border: none;
-                cursor: pointer;
-            }
-
-            .click_order button:hover {
-                background-color: rgb(6 85 166);
+                transition: all 0.3s ease;
             }
 
             .content_item:hover .click_order {
                 opacity: 1;
-                transition: all 0.5s;
-                transform: translateY(-50%);
             }
 
-            .content_item:hover {
-                border: 1px solid yellow;
+            .click_order a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+            .click_order button {
+                background-color: #0655a6;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .click_order button:hover {
+                background-color: #043d73;
+            }
+
+            .describe_product {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            .cost_product p {
+                color: gray;
+                font-size: 17px;
+            }
+
+            .cost_product h2 {
+                color: #ff6600;
+                font-size: 20px;
             }
 
             .page_number {
                 margin-top: 25px;
+                text-align: center;
             }
 
-            .page_number .number ul {
-                display: flex;
+            .page_number ul {
+                display: inline-flex;
+                list-style-type: none;
             }
 
-            .page_number .number ul li a {
-                text-decoration: none;
-                color: black;
-                font-size: 16px;
+            .page_number ul li {
+                margin: 0 5px;
             }
 
-            .page_number .number ul li {
-                border: 2px solid black;
-                margin: 10px;
-                border-radius: 30px;
-                list-style: none;
+            .page_number ul li a {
+                display: block;
                 padding: 5px 10px;
+                border: 1px solid #ccc;
+                text-decoration: none;
+                color: #333;
+                transition: all 0.3s ease;
             }
 
-            .page_number .number li:hover {
-                background-color: yellow;
-                transition: all 0.7s;
+            .page_number ul li a:hover {
+                background-color: #ff6600;
+                color: #fff;
             }
 
-            /*Ket thuc content*/
+            .back-button {
+                margin: 50px;
+                text-align: left;
+            }
+
+            .back-button a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #ff6600;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .back-button a:hover {
+                background-color: #e65c00;
+            }
         </style>
     </head>
-
+    
     <body>
         <main>
 
@@ -268,7 +297,11 @@ if (isset($_GET['product_name'])) {
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <p style="font-weight: 600;">Không tìm thấy sản phẩm nào phù hợp.</p>
+                                    <div class="back-button">
+                                        <a href="../index.php" class="mot">Quay về trang chủ</a>
+                                    </div>
                             <?php endif; ?>
+                            
                         </div>
                     </div>
                 </div>

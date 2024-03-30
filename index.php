@@ -9,9 +9,7 @@
     if(isset($_GET['act'])){
         switch ($_GET['act']) {
             case 'search':
-                include "view/header.php";
                 include "view/search.php";
-                include "view/footer.php";
                 break;
 
             case 'about':
