@@ -66,11 +66,6 @@
                 include "view/home.php";
                 break;
         }
-    } else if (isset($_GET['submit']) && isset($_GET['search'])) {
-        $product_name = $_GET['search'];
-        $search_url = "view/search.php?product_name=" . urlencode($product_name);
-        header("Location: $search_url");
-        exit();
     } else{
         include "view/home.php";
     }  

@@ -101,9 +101,37 @@
         }
         return $cart;
     }
+    function addToCart($product_id, $quantity, $conn) {
+        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+        if (isset($_SESSION['cart'][$product_id])) {
+            // Nếu sản phẩm đã tồn tại, tăng số lượng lên
+            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+        } else {
+            // Nếu sản phẩm chưa tồn tại, thêm vào giỏ hàng
+            $query = mysqli_query($conn, "SELECT * FROM products WHERE id= '$product_id'");
+            if ($query) {
+                $product = mysqli_fetch_assoc($query);
+                if ($product) {
+                    $item = [
+                        'id' => $product['id'],
+                        'name' => $product['name'],
+                        'image' => $product['image'],
+                        'price' => $product['price'],
+                        'quantity' => $quantity
+                    ];
+                    $_SESSION['cart'][$product_id] = $item;
+                } else {
+                    // Xử lý lỗi nếu không tìm thấy sản phẩm
+                }
+            } else {
+                // Xử lý lỗi khi truy vấn không thành công
+            }
+        }
+    }
+    
     //bắt buộc đăng nhập mới được thêm sản phẩm vào giỏ 
     if (!isset($_SESSION['id_user'])) {
-        header('location: login/login.php');
+        header('location: ../login/login.php');
         exit;
     }else{
         $user_id = $_SESSION['id_user'];
@@ -115,7 +143,6 @@
     ;
     //khởi tạo giỏ hàng trống
     $cart = getCartFromDatabase($user_id, $conn);
-    // $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
     if (isset($_GET['id'])) {
         // Sử dụng hàm mysqli_real_escape_string để tránh SQL Injection
@@ -148,6 +175,27 @@
         if (isset($_SESSION['cart'][$id])) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
             $_SESSION['cart'][$id]['quantity'] += 1;
+             // Cập nhật số lượng trong cơ sở dữ liệu
+            if (isset($_SESSION['id_user'])) {
+                $user_id = $_SESSION['id_user'];
+                $new_quantity = $_SESSION['cart'][$id]['quantity'];
+                
+                // Sử dụng prepared statement để tránh SQL Injection
+                $sql_update = "UPDATE cart SET qty = ? WHERE user_id = ? AND product_id = ?";
+                $stmt = $conn->prepare($sql_update);
+                $stmt->bind_param("iii", $new_quantity, $user_id, $id);
+                
+                if ($stmt->execute()) {
+                    // Thành công
+                    // Redirect hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+                    header('Location: view/view-cart.php');
+                    exit();
+                } else {
+                    // Xử lý lỗi nếu cần
+                    echo "Error: " . $sql_update . "<br>" . $conn->error;
+                }
+                $stmt->close();
+            }
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm vào giỏ hàng
             $_SESSION['cart'][$id] = $item;
@@ -342,11 +390,7 @@
                             <?php echo $product['name']; ?>
                         </td>
                         <td>
-                            <form method="post">
-                                <input type="number" name="quantity[<?php echo $id; ?>]"
-                                    value="<?php echo $product['quantity']; ?>" min="1">
-                                <button type="submit" name="update">Cập nhật</button>
-                            </form>
+                            <?php echo $product['quantity']; ?>
                         </td>
                         <td>
                             <?php echo number_format($product['price'], 0, ',', '.'); ?> đ
@@ -364,7 +408,7 @@
                     <th>
                         <?php echo number_format($total, 0, ',', '.'); ?> đ
                     </th>
-                    <th><a href="#" class="mot">Thanh toán</a></th>
+                    <th><a href="../view/checkout.php" class="mot">Thanh toán</a></th>
                 </tr>
             </tfoot>
         </table>
