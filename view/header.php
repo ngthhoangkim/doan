@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <a href="view/search.php"><i class="fa fa-fw fa-search text-dark mr-2"></i></a>
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i></a>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="view/view-cart.php">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
@@ -121,7 +121,7 @@
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="inputModalSearch" name="search" placeholder="Search ...">
                     <button type="submit" name="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
+                        <a href="index.php?act=search"><i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
             </form>
