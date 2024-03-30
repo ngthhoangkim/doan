@@ -103,7 +103,7 @@
     }
     //bắt buộc đăng nhập mới được thêm sản phẩm vào giỏ 
     if (!isset($_SESSION['id_user'])) {
-        header('location: ../login/login.php');
+        header('location: login/login.php');
         exit;
     }else{
         $user_id = $_SESSION['id_user'];
