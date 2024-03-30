@@ -4,6 +4,32 @@
 // Bao gồm file kết nối đến cơ sở dữ liệu
 @include '../model/connectdb.php';
 
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli("localhost", "root", "", "dbtrangsuc");
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
+}
+
+// Biến để kiểm tra đã thực hiện kiểm tra hay chưa
+$checked = false;
+
+// Kiểm tra nếu có tham số product_name trong URL
+if(isset($_GET['product_name'])) {
+    $product_name = $_GET['product_name'];
+    
+    // Câu lệnh SQL để lấy dữ liệu từ bảng products
+    $sql = "SELECT * FROM products WHERE name LIKE '%$product_name%'";
+    
+    // Thực thi câu lệnh SQL
+    $result = $conn->query($sql);
+    
+    // Đã thực hiện kiểm tra
+    $checked = true;
+}
+
+
 $limit = 50; // Số sản phẩm hiển thị trên một trang
 $cr_page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1; // Trang hiện tại
 
@@ -80,8 +106,8 @@ if (isset($_GET['product_name'])) {
 
             .content_item .img_product img {
                 position: relative;
-                width: 227px;
-                height: 227px;
+                width: 350x;
+                height: 400px;
             }
 
             .content_item .in_stock {
@@ -211,7 +237,7 @@ if (isset($_GET['product_name'])) {
                                             <?php endif; ?>
                                         </div>
                                         <div class="img_product">
-                                            <a href="product_detail.php?id=<?php echo $info_product['id'] ?>">
+                                            <a href="chitietsp.php?id=<?php echo $info_product['id'] ?>">
                                                 <img src="../admin/update_img/<?php echo $info_product['image'] ?>" alt="">
                                             </a>
                                         </div>

@@ -9,7 +9,9 @@
     if(isset($_GET['act'])){
         switch ($_GET['act']) {
             case 'search':
+                include "view/header.php";
                 include "view/search.php";
+                include "view/footer.php";
                 break;
 
             case 'about':
@@ -66,6 +68,11 @@
                 include "view/home.php";
                 break;
         }
+    } else if (isset($_GET['submit']) && isset($_GET['search'])) {
+        $product_name = $_GET['search'];
+        $search_url = "view/search.php?product_name=" . urlencode($product_name);
+        header("Location: $search_url");
+        exit();
     } else{
         include "view/home.php";
     }  
