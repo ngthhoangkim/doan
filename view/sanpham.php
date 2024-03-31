@@ -4,6 +4,25 @@
 .container {
     margin: 30px auto
 }
+.search{
+    display: flex; 
+    align-items: center;
+}
+.select-form {
+    
+    margin: 0; 
+    padding: 0;
+  
+}
+.select-type {
+    margin-right: 10px; 
+}
+.button {
+    border: none; 
+    padding: 2px ; 
+    margin: 10px;
+    cursor: pointer;
+}
 .container .product-item {
     min-height: 450px;
     border: none;
@@ -11,7 +30,9 @@
     position: relative;
     border-radius: 0
 }
-
+.cart {
+    margin-left: auto; 
+}
 .container .product-item .product {
     width: 100%;
     height: 350px;
@@ -153,15 +174,16 @@
     <div class="container bg-white">
         
         <form action="" method="post">
-        
-        <select name="id_type">
+        <div class="search">
+        <select name="id_type" class="search-form">
                     <option value="">Tất cả loại sản phẩm</option>
                     <?php foreach ($types as $type) { ?>
                         <option value="<?php echo $type['id']; ?>"><?php echo $type['name_type']; ?></option>
                     <?php } ?>
                 </select>
-                <button type="submit">Lọc</button>
-                <a class="cart" href="view/view-cart.php"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
+                <button type="submit" class="button">Lọc</button>
+                <a class="cart" href="view/view-cart.php"style="float: right;"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
+        </div>
             <div class="row">
                <?php foreach ($product_data as $product) { ?>
                      <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
