@@ -105,7 +105,7 @@
     color: #fff
 }
 .cart i {
-    font-size: 50px;
+    font-size: 25px;
 }
 .cart {
     text-decoration: none;
@@ -116,12 +116,27 @@
 </head>
 <?php
     @include '../model/connectdb.php';
-
+    $sql_type = "SELECT * FROM type";
+    $result_type = mysqli_query($conn, $sql_type);
+    
+    // Kiểm tra xem có dữ liệu trả về không
+    if (mysqli_num_rows($result_type) > 0) {
+        // Tạo một mảng chứa dữ liệu từ bảng type
+        $types = array();
+        while ($row_type = mysqli_fetch_assoc($result_type)) {
+            $types[] = $row_type;
+        }
+    }
     // Initialize $product_data array
     $product_data = array();
-
+    if(isset($_POST['id_type']) && !empty($_POST['id_type'])){
+        // Lấy giá trị id_type từ URL
+        $id_type = $_POST['id_type'];
+        $sql = "SELECT products.*, type.name_type FROM products INNER JOIN type ON products.id_type = type.id WHERE products.id_type = $id_type";
+    } else {
     //truy vấn
     $sql = "SELECT products.*, type.name_type FROM products INNER JOIN type ON products.id_type = type.id";
+    }
     $result = mysqli_query($conn, $sql);
     //in ra 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -136,8 +151,17 @@
 ?>
 <body>
     <div class="container bg-white">
-        <a class="cart" href="view/view-cart.php"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
+        
         <form action="" method="post">
+        
+        <select name="id_type">
+                    <option value="">Tất cả loại sản phẩm</option>
+                    <?php foreach ($types as $type) { ?>
+                        <option value="<?php echo $type['id']; ?>"><?php echo $type['name_type']; ?></option>
+                    <?php } ?>
+                </select>
+                <button type="submit">Lọc</button>
+                <a class="cart" href="view/view-cart.php"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
             <div class="row">
                <?php foreach ($product_data as $product) { ?>
                      <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">

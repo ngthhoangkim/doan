@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          background-size:cover;
       }
 
-        }
+        
     </style>
 </head>
 <body>
