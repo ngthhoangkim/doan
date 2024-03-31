@@ -2,33 +2,39 @@
 
 @include '../model/connectdb.php';
 
+session_start();
+
 if(isset($_POST['submit'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   // $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
-   $user_type = $_POST['user_type'];
+   // $cpass = md5($_POST['cpassword']);
+   // $user_type = $_POST['user_type'];
 
-   $select = " SELECT * FROM users WHERE email = '$email'|| username = '$name' ";
-   $selectAdmin = "SELECT * FROM users WHERE user_type = 'admin'";
+   $select = " SELECT * FROM users WHERE email = '$email' && password = '$pass' ";
 
    $result = mysqli_query($conn, $select);
-   $resultAdmin = mysqli_query($conn, $selectAdmin);
 
-   if(mysqli_num_rows($result) > 0 || mysqli_num_rows($resultAdmin) > 0){
+   if(mysqli_num_rows($result) > 0){
 
-      $error[] = 'Tài khoản đã tồn tại!';
+      $row = mysqli_fetch_array($result);
 
-   }else{
+      if($row['user_type'] == 'admin'){
 
-      if($pass != $cpass){
-         $error[] = 'Password không giống bạn hãy nhập lại!';
-      }else{
-         $insert = "INSERT INTO users(username, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-         mysqli_query($conn, $insert);
-         header('location:login.php');
+         $_SESSION['admin_name'] = $row['username'];
+         header('location: ../admin/index.php');
+
+      }elseif($row['user_type'] == 'user'){
+
+         $_SESSION['username'] = $row['username'];
+         $_SESSION['id_user'] = $row['id'];
+         header('location: ../index.php');
+
       }
+     
+   }else{
+      $error[] = 'Mật khẩu hoặc email sai!';
    }
 
 };
@@ -40,12 +46,12 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>ĐĂNG KÝ | LUXURIOUS</title>
+   <title>ĐĂNG NHẬP | LUXURIOUS</title>
    <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
    <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
-
+   
    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
+      @import ur  l('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
       *{
          font-family: 'Roboto', sans-serif;
          margin:0; padding:0;
@@ -162,7 +168,7 @@ if(isset($_POST['submit'])){
       }
 
       .form-container form p{
-         margin-top: 10px;
+         margin-top: 20px;
          font-size: 20px;
          color:#333;
       }
@@ -181,7 +187,7 @@ if(isset($_POST['submit'])){
          padding:10px;
       }
       .form-container{
-         background:url("../public/img/nen.jpg");
+         background:url("../../public/img/nen.jpg");
          background-size:cover;
       }
       .form-container form {
@@ -192,31 +198,29 @@ if(isset($_POST['submit'])){
     text-align: center;
     width: 500px;
 }
+
    </style>
+   
+
 </head>
 <body>
    
 <div class="form-container">
 
    <form action="" method="post">
-      <h3>Đăng ký</h3>
+      <h3>Đăng nhập</h3>
       <?php
          if(isset($error)){
             foreach($error as $error){
-               echo '<span style="color:black; background-color:#fff" class="error-msg">'.$error.'</span>';
+               echo '<span  class="error-msg">'.$error.'</span>';
             };
          };
       ?>
-      <input type="text" name="name" required placeholder="Nhập tên">
       <input type="email" name="email" required placeholder="Nhập email">
       <input type="password" name="password" required placeholder="Nhập password">
-      <input type="password" name="cpassword" required placeholder="Nhập lại password">
-      <select name="user_type">
-         <option value="user">USER</option>
-         <option value="admin">ADMIN</option>
-      </select>
-      <input style="color:#ECE5C7 " type="submit" name="submit" value="Đăng ký" class="form-btn">
-      <p>Nếu bạn có tài khoản rồi hãy <a href="login.php">đăng nhập</a></p>
+      <input type="submit" style="color:#ECE5C7 " name="submit" value="Đăng nhập" class="form-btn">
+      <a href="quenmk.php">Quên mật khẩu</a>
+      <p><a href="register.php">Đăng ký</a></p>
    </form>
 
 </div>

@@ -283,7 +283,7 @@ if (isset($_GET['product_name'])) {
                                         </p>
                                         <button>
                                             <a style="text-decoration: none; color:white;"
-                                                href="./view-cart.php?id=<?php echo $info_product['id'] ?>">Đặt hàng</a>
+                                                href="../index.php?act=giohang&id=<?php echo $info_product['id'] ?>">Đặt hàng</a>
                                         </button>
                                     </div>
                                     <div class="describe_product">
