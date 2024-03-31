@@ -1,6 +1,6 @@
 <?php
 
-@include '../model/connectdb.php';
+@include '../../model/connectdb.php';
 
 session_start();
 
@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
 
          $_SESSION['username'] = $row['username'];
          $_SESSION['id_user'] = $row['id'];
-         header('location: ../index.php');
+         header('location: ../../index.php');
 
       }
      
@@ -47,8 +47,8 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>ĐĂNG NHẬP | LUXURIOUS</title>
-   <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
-   <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
+   <link rel="apple-touch-icon" href="../../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+   <link rel="shortcut icon" type="../../public/image/x-icon" href="../../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
    
    <style>
       @import ur  l('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
