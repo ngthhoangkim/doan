@@ -1,3 +1,70 @@
+<?php
+include '../model/connectdb.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// Kiểm tra người dùng đã đăng nhập hay chưa
+if (!isset($_SESSION['id_user'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Lấy giỏ hàng từ session
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+
+// Xử lý khi người dùng submit form thanh toán
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
+    $payment_method = mysqli_real_escape_string($conn, $_POST['payment_method']);
+    $user_id = $_SESSION['id_user'];
+    $total_products = count($cart); // Số lượng sản phẩm trong giỏ hàng
+    $total_price = 0;
+
+    // Tính tổng giá trị đơn hàng
+    foreach ($cart as $product) {
+        $total_price += $product['price'] * $product['quantity'];
+    }
+
+    // Lưu đơn hàng vào bảng orders
+    $placed_on = date('Y-m-d H:i:s');
+    $payment_status = 'pending'; // Tình trạng thanh toán
+
+    $sql = "INSERT INTO orders (user_id, name, number, email, method, address, total_products, total_price, placed_on, payment_status) 
+            VALUES ('$user_id', '$name', '$phone', '$email', '$payment_method', '$address', '$total_products', '$total_price', '$placed_on', '$payment_status')";
+
+    if (mysqli_query($conn, $sql)) {
+        $order_id = mysqli_insert_id($conn);
+
+        // Lưu chi tiết đơn hàng vào bảng order_details
+        foreach ($cart as $product) {
+            $product_id = $product['id'];
+            $quantity = $product['quantity'];
+            $price = $product['price'];
+            $sql_details = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES ('$order_id', '$product_id', '$quantity', '$price')";
+            mysqli_query($conn, $sql_details);
+        }
+
+        // Xóa dữ liệu liên quan trong bảng cart
+        $sql_delete = "DELETE FROM cart WHERE user_id = '$user_id'";
+        mysqli_query($conn, $sql_delete);
+
+        // Xóa giỏ hàng trong session
+        unset($_SESSION['cart']);
+
+        // Chuyển hướng đến trang thông báo thanh toán thành công
+        header('Location: order_success.php');
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +72,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
@@ -19,92 +88,92 @@
         .payment-box {
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             display: flex;
             overflow: hidden;
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
         }
 
         .left-side {
             background-color: #4CAF50;
             color: #fff;
-            padding: 30px;
+            padding: 40px;
             width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .right-side {
-            padding: 30px;
-            width: 50%;
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        .form-group {
+        .left-side h2 {
+            font-size: 28px;
             margin-bottom: 20px;
         }
 
-        label {
+        .left-side p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .right-side {
+            padding: 40px;
+            width: 50%;
+            
+        }
+
+        .right-side h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form .form-group {
+            margin-bottom: 20px;
+        }
+
+        form label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
+            font-size: 14px;
         }
 
-        input[type="text"],
-        input[type="email"],
-        textarea {
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
             width: 100%;
+            font-size: 16px;
         }
 
-        button {
+        form select {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        form button {
             background-color: #4CAF50;
             border: none;
             color: #fff;
             cursor: pointer;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 5px;
+            font-size: 16px;
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        form button:hover {
             background-color: #3e8e41;
-        }
-
-        .file-input {
-            position: relative;
-            display: inline-block;
-        }
-
-        .file-input input[type="file"] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        .file-input span {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 14px;
         }
 
         table th, table td {
@@ -113,13 +182,19 @@
             border-bottom: 1px solid #ddd;
         }
 
-        table th {
+        /* table th {
             background-color: #f2f2f2;
-        }
+        } */
 
         table img {
-            max-width: 100px;
+            max-width: 80px;
             height: auto;
+        }
+        .container{
+            background:url("../public/img/nen.jpg");
+         background-size:cover;
+      }
+
         }
     </style>
 </head>
