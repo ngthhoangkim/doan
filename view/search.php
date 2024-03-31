@@ -100,19 +100,11 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Đổ bóng */
 }
 
-<<<<<<< HEAD
-.content_card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Điều chỉnh số cột tự động */
-    gap: 20px;
-}
-=======
         .content_card {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
->>>>>>> 44a97a6dd6b9e4d999413e3527fa54d5a2b7a443
 
 .content_item {
     border: 1px solid #e1e1e1;
