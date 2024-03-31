@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
    <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
    
    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
+      @import ur  l('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
       *{
          font-family: 'Roboto', sans-serif;
          margin:0; padding:0;
@@ -168,7 +168,7 @@ if(isset($_POST['submit'])){
       }
 
       .form-container form p{
-         margin-top: 10px;
+         margin-top: 20px;
          font-size: 20px;
          color:#333;
       }
@@ -186,6 +186,19 @@ if(isset($_POST['submit'])){
          font-size: 20px;
          padding:10px;
       }
+      .form-container{
+         background:url("../public/img/nen.jpg");
+         background-size:cover;
+      }
+      .form-container form {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, 0.3); /* Màu nền và độ trong suốt */
+    text-align: center;
+    width: 500px;
+}
+
    </style>
    
 

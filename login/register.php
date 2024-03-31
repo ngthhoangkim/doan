@@ -180,6 +180,18 @@ if(isset($_POST['submit'])){
          font-size: 20px;
          padding:10px;
       }
+      .form-container{
+         background:url("../public/img/nen2.jpg");
+         background-size:cover;
+      }
+      .form-container form {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, 0.3); /* Màu nền và độ trong suốt */
+    text-align: center;
+    width: 500px;
+}
    </style>
 </head>
 <body>
