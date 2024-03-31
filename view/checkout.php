@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .left-side {
-            background-color: #4CAF50;
+            background-color: #008B8B;
             color: #fff;
             padding: 40px;
             width: 50%;
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         form button {
-            background-color: #4CAF50;
+            background-color:#008B8B;
             border: none;
             color: #fff;
             cursor: pointer;
@@ -256,8 +256,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="cod">Thanh toán khi nhận hàng (COD)</option>
                             <option value="online">Thanh toán online</option>
                         </select>
+                        <button type="button" onclick="window.location.href='view-cart.php'">Quay về trang giỏ hàng</button>
+                        <button type="submit" style="float: right;">Thanh toán</button>
                     </div>
-                    <button type="submit">Thanh toán</button>
                 </form>
             </div>
         </div>

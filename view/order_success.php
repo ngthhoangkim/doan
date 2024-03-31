@@ -3,7 +3,6 @@ include '../model/connectdb.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 // Kiểm tra người dùng đã đăng nhập hay chưa
 if (!isset($_SESSION['id_user'])) {
     header('Location: login.php');
@@ -12,105 +11,108 @@ if (!isset($_SESSION['id_user'])) {
 
 $user_id = $_SESSION['id_user'];
 
-// Lấy thông tin đơn hàng mới nhất
-$sql = "SELECT o.*, od.*, p.name AS product_name, p.image AS product_image
+// Lấy thông tin đơn hàng của người dùng
+$sql = "SELECT o.id, o.name, o.number, o.email, o.method, o.address, o.total_price, o.placed_on, o.payment_status, GROUP_CONCAT(od.product_id, ':', od.quantity, ':', od.price SEPARATOR '|') AS order_details
         FROM orders o
         JOIN order_details od ON o.id = od.order_id
-        JOIN products p ON od.product_id = p.id
-        WHERE o.user_id = '$user_id'
-        ORDER BY o.placed_on DESC
-        LIMIT 1";
+        WHERE o.user_id = $user_id
+        GROUP BY o.id
+        ORDER BY o.placed_on DESC";
+$result = $conn->query($sql);
 
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    $order = mysqli_fetch_assoc($result);
-} else {
-    echo "Không tìm thấy đơn hàng.";
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Thông tin đơn hàng</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 20px;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 20px;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
+        .order-item {
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .order-item h3 {
+            color: #333;
+            margin-bottom: 10px;
         }
 
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .order-item p {
+            margin: 5px 0;
         }
 
-        th {
-            background-color: #f2f2f2;
+        .order-item ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        img {
-            max-width: 80px;
-            height: auto;
+        .order-item ul li {
+            margin-left: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Thông tin đơn hàng</h1>
-        <table>
-            <tr>
-                <th>Ảnh sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-            </tr>
-            <?php
-            $total_price = 0;
-            do {
-                $product_price = $order['price'] * $order['quantity'];
-                $total_price += $product_price;
-                ?>
-                <tr>
-                    <td><img src="<?php echo $order['product_image']; ?>" alt="<?php echo $order['product_name']; ?>"></td>
-                    <td><?php echo $order['product_name']; ?></td>
-                    <td><?php echo $order['quantity']; ?></td>
-                    <td><?php echo number_format($order['price'], 0, ',', '.'); ?> đ</td>
-                    <td><?php echo number_format($product_price, 0, ',', '.'); ?> đ</td>
-                </tr>
-                <?php
-            } while ($order = mysqli_fetch_assoc($result));
-            ?>
-            <tr>
-                <td colspan="4" style="text-align:right;"><strong>Tổng cộng:</strong></td>
-                <td><strong><?php echo number_format($total_price, 0, ',', '.'); ?> đ</strong></td>
-            </tr>
-        </table>
+        <h1 class="mb-4">Your Orders</h1>
+        <?php
+        // Hiển thị danh sách đơn hàng
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='order-item'>";
+                echo "<div class='row'>";
+                echo "<div class='col-md-6'>";
+                echo "<p><strong>Name:</strong> " . $row['name'] . "</p>";
+                echo "<p><strong>Phone:</strong> " . $row['number'] . "</p>";
+                echo "<p><strong>Email:</strong> " . $row['email'] . "</p>";
+                echo "<p><strong>Payment Method:</strong> " . $row['method'] . "</p>";
+                echo "<p><strong>Address:</strong> " . $row['address'] . "</p>";
+                echo "</div>";
+                echo "<div class='col-md-6'>";
+                echo "<p><strong>Total Price:</strong> " . number_format($row['total_price'], 0, ',', '.') . " VNĐ</p>";
+                echo "<p><strong>Ordered On:</strong> " . $row['placed_on'] . "</p>";
+                echo "<p><strong>Payment Status:</strong> " . $row['payment_status'] . "</p>";
+                echo "<h4>Ordered Products:</h4>";
+                echo "<ul>";
+                $order_details = explode('|', $row['order_details']);
+                foreach ($order_details as $detail) {
+                    list($product_id, $quantity, $price) = explode(':', $detail);
+                    $product_sql = "SELECT name FROM products WHERE id = $product_id";
+                    $product_result = $conn->query($product_sql);
+                    $product_name = $product_result->fetch_assoc()['name'];
+                    echo "<li>$product_name x $quantity (Price: " . number_format($price, 0, ',', '.') . " VNĐ)</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
+                echo "</div>"; // close row
+                echo "</div>"; // close order-item
+            }
+        } else {
+            echo "You don't have any orders.";
+        }
+        ?>
     </div>
 </body>
 </html>
