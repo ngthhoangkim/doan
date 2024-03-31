@@ -101,7 +101,7 @@ if (isset($_GET['product_name'])) {
 
         .content_card {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
