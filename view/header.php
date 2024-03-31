@@ -121,7 +121,7 @@
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="inputModalSearch" name="search" placeholder="Search ...">
                     <button type="submit" name="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
+                        <a href="index.php?act=search.php"><i class="fa fa-fw fa-search text-white"></i></a>
                     </button>
                 </div>
             </form>
