@@ -101,34 +101,6 @@
         }
         return $cart;
     }
-    function addToCart($product_id, $quantity, $conn) {
-        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-        if (isset($_SESSION['cart'][$product_id])) {
-            // Nếu sản phẩm đã tồn tại, tăng số lượng lên
-            $_SESSION['cart'][$product_id]['quantity'] += $quantity;
-        } else {
-            // Nếu sản phẩm chưa tồn tại, thêm vào giỏ hàng
-            $query = mysqli_query($conn, "SELECT * FROM products WHERE id= '$product_id'");
-            if ($query) {
-                $product = mysqli_fetch_assoc($query);
-                if ($product) {
-                    $item = [
-                        'id' => $product['id'],
-                        'name' => $product['name'],
-                        'image' => $product['image'],
-                        'price' => $product['price'],
-                        'quantity' => $quantity
-                    ];
-                    $_SESSION['cart'][$product_id] = $item;
-                } else {
-                    // Xử lý lỗi nếu không tìm thấy sản phẩm
-                }
-            } else {
-                // Xử lý lỗi khi truy vấn không thành công
-            }
-        }
-    }
-    
     //bắt buộc đăng nhập mới được thêm sản phẩm vào giỏ 
     if (!isset($_SESSION['id_user'])) {
         header('location: ../login/login.php');
