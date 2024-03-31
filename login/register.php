@@ -181,7 +181,7 @@ if(isset($_POST['submit'])){
          padding:10px;
       }
       .form-container{
-         background:url("../public/img/nen2.jpg");
+         background:url("../public/img/nen.jpg");
          background-size:cover;
       }
       .form-container form {
