@@ -55,6 +55,10 @@
          .delete-btn:hover {
          background-color: #da190b;
          }
+         .container{
+         background:url("../public/img/nen.jpg");
+         background-size:cover;
+      }
       </style>
    </head>
    <body>

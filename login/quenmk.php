@@ -76,18 +76,64 @@
    }
    }
    ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<form method="post"   style="width:600px;" class="border border-warning border-3 m-auto p-3">
-   <div class="mb-3 text-center">
-      <h1>QUÊN MẬT KHẨU  </h1>
-      <!-- in tài khoản không tồn tai  -->
-      <?php if (!empty($loi)) { ?>
-      <div class="alert alert-danger"><?= $loi ?></div>
-      <?php } ?>
-   </div>
-   <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">nhập Email</label>
-      <input value="<?php if (isset($email)==true) echo $email ?>"    type="email" class="form-control" id="email" name ="email">
-   </div>
-   <button type="submit" name="nutguiyeucau" value="nutgui" class="btn btn-primary">gửi yêu cầu</button>
-</form>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            width: 600px;
+            border: 3px solid #ffc107;
+            padding: 20px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            margin-bottom: 0.5rem;
+        }
+        .form-control {
+            width: 100%;
+        }
+        .form-container1{
+           
+           background:url("../public/img/nen.jpg");
+           background-size:cover;
+          }
+      
+    </style>
+</head>
+<body class="form-container1">
+    <div class="form-container border border-warning border-3">
+        <form method="post" class="p-3">
+            <div class="mb-3 text-center">
+                <h1>QUÊN MẬT KHẨU</h1>
+                <!-- in tài khoản không tồn tại  -->
+                <?php if (!empty($loi)) { ?>
+                <div class="alert alert-danger"><?= $loi ?></div>
+                <?php } ?>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Nhập Email</label>
+                <input value="<?php if (isset($email) == true) echo $email ?>" type="email" class="form-control" id="email" name="email">
+            </div>
+            <button type="submit" name="nutguiyeucau" value="nutgui" class="">Gửi yêu cầu</button>
+        </form>
+    </div>
+</bodyclass=form-container>
+</html>

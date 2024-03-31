@@ -1,27 +1,49 @@
 <style>
-    .qltk{
-        margin-top: 100px;
+<style>
+    body {
+        margin: 0;
+        padding: 0;
         font-family: 'Roboto', sans-serif;
     }
 
-    .qltk table{
-        width: 80%;
-        border: 1px solid black;
-        margin: 10px 0px 0px 100px;
+    .qltk1 {
+        background: url("../public/img/lienhe.jpg");
+        background-size: cover;
+        padding-top: 100px; /* Thay đổi margin-top thành padding-top */
     }
-    .qltk table th{
+
+    .qltk {
+        width: 80%;
+        margin: 0 auto; /* Canh giữa nội dung */
+        color: #333; /* Màu chữ chính */
+    }
+
+    .qltk table {
+        width: 100%; /* Sửa chiều rộng của bảng */
+        border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
+        margin-top: 20px; /* Thêm khoảng cách từ bảng đến tiêu đề */
+    }
+
+    .qltk table th,
+    .qltk table td {
         border: 1px solid black;
-        height: 50px;
+        padding: 10px; /* Thêm padding cho ô */
+    }
+
+    .qltk table th {
         background-color: #116A7B;
         color: #ECE5C7;
+        text-align: center; /* Căn giữa nội dung trong thẻ th */
     }
-    .qltk table td{
+
+    .qltk table td {
         text-align: center;
-        border: 1px solid black;
-        height: 50px;
     }
 </style>
+
+</style>
 <body>
+    <div class="qltk1">
     <main class="qltk">
         <h3 align="center" >THÔNG TIN KHÁCH HÀNG</h3>
         <table align="center" cellpadding=0 cellspacing=0>
@@ -60,4 +82,5 @@
             <?php } ?>
         </table>
     </main>
+    </div>
 </body>

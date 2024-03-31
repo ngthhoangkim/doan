@@ -94,6 +94,18 @@
     a:hover{
         text-decoration:underline;
     }
+    .container{
+         background:url("../public/img/nen.jpg");
+         background-size:cover;
+      }
+      .form-container {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, 0.3); /* Màu nền và độ trong suốt */
+    text-align: center;
+    width: 500px;
+}
 </style>
 </head>
 <body>
