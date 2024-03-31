@@ -103,7 +103,7 @@
     }
     //bắt buộc đăng nhập mới được thêm sản phẩm vào giỏ 
     if (!isset($_SESSION['id_user'])) {
-        header('location: ../login/login.php');
+        header('location: view/login/login.php');
         exit;
     }else{
         $user_id = $_SESSION['id_user'];
@@ -362,7 +362,8 @@
                             <?php echo $product['name']; ?>
                         </td>
                         <td>
-                            <?php echo $product['quantity']; ?>
+                            <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
+                            <button type="submit" name="update">Update</button>
                         </td>
                         <td>
                             <?php echo number_format($product['price'], 0, ',', '.'); ?> đ

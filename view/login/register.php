@@ -1,6 +1,6 @@
 <?php
 
-@include '../model/connectdb.php';
+@include '../../model/connectdb.php';
 
 if(isset($_POST['submit'])){
 
@@ -10,13 +10,17 @@ if(isset($_POST['submit'])){
    $cpass = md5($_POST['cpassword']);
    $user_type = $_POST['user_type'];
 
-   $select = " SELECT * FROM users WHERE email = '$email'|| username = '$name' ";
-   $selectAdmin = "SELECT * FROM users WHERE user_type = 'admin'";
+   $select = " SELECT * FROM users WHERE email = '$email' && username = '$name' || user_type = 'admin' ";
+   $selectAdmin = "SELECT * FROM users WHERE ";
 
    $result = mysqli_query($conn, $select);
-   $resultAdmin = mysqli_query($conn, $selectAdmin);
+   // $resultAdmin = mysqli_query($conn, $selectAdmin);
 
-   if(mysqli_num_rows($result) > 0 || mysqli_num_rows($resultAdmin) > 0){
+   // if(mysqli_num_rows($resultAdmin) > 0){
+   //    $error[] = 'Tài khoản đã tồn tại!';
+   // }
+
+   if(mysqli_num_rows($result) > 0){
 
       $error[] = 'Tài khoản đã tồn tại!';
 
@@ -41,8 +45,8 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>ĐĂNG KÝ | LUXURIOUS</title>
-   <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
-   <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
+   <link rel="apple-touch-icon" href="../../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+   <link rel="shortcut icon" type="../../public/image/x-icon" href="../../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
 
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
@@ -181,7 +185,7 @@ if(isset($_POST['submit'])){
          padding:10px;
       }
       .form-container{
-         background:url("../public/img/nen2.jpg");
+         background:url("../../public/img/nen.jpg");
          background-size:cover;
       }
       .form-container form {
