@@ -183,6 +183,7 @@
                 </select>
                 <button type="submit" class="button">Lọc</button>
                 <a class="cart" href="view/view-cart.php"style="float: right;"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
+                <a class="cart" href="view/order_success.php"style="float: right;"><i class="las la-car"></i></a>
         </div>
             <div class="row">
                <?php foreach ($product_data as $product) { ?>
