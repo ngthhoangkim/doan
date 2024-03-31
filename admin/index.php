@@ -1,11 +1,11 @@
 <?php
-    @include '../model/connectdb.php.php';
+    @include '../model/connectdb.php';
 
     session_start();
     
     if(!isset($_SESSION['admin_name'])){
-       header('location:../login/login.php');
-     }
+       header('location:../../view/login/login.php');
+    }
      
     include "../admin/view/header.php";
 
