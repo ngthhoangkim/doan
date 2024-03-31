@@ -72,9 +72,31 @@ $result = $conn->query($sql);
         .order-item ul li {
             margin-left: 20px;
         }
+        .go-back {
+        position: absolute;
+        left: 50px;
+        top: 20px;
+        }
+        button {
+            background-color:#008B8B;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
     </style>
 </head>
 <body>
+    
+<button type="button" onclick="window.location.href='../index.php'" class="go-back">Quay về trang chủ</button>
     <div class="container">
         <h1 class="mb-4">Your Orders</h1>
         <?php
@@ -106,8 +128,8 @@ $result = $conn->query($sql);
                 }
                 echo "</ul>";
                 echo "</div>";
-                echo "</div>"; // close row
-                echo "</div>"; // close order-item
+                echo "</div>";
+                echo "</div>";
             }
         } else {
             echo "You don't have any orders.";
