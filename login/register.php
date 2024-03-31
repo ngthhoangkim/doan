@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
    $result = mysqli_query($conn, $select);
    $resultAdmin = mysqli_query($conn, $selectAdmin);
 
-   if(mysqli_num_rows($result) > 0 && mysqli_num_rows($resultAdmin) > 0){
+   if(mysqli_num_rows($result) > 0 || mysqli_num_rows($resultAdmin) > 0){
 
       $error[] = 'Tài khoản đã tồn tại!';
 
