@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2024 lúc 06:00 AM
+-- Thời gian đã tạo: Th3 31, 2024 lúc 06:02 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -130,8 +130,6 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `qty`, `price`, `method`, `image`, `id_type`) VALUES
 (6, 'Nhẫn 5 HEART LINE', 50, 390000, 'Nhẫn 5 Heart Line là một mẫu nhẫn độc đáo và ý nghĩa, được thiết kế với năm dòng đường cong mềm mại tạo thành hình dạng hình trái tim. Mỗi dòng đường cong tượng trưng cho một trái tim, biểu trưng cho tình yêu, sự đoàn kết và sự gắn kết.', '5 HEART LINE(1).webp', 5),
-(7, 'Nhẫn BIG BUTTERFLY', 50, 450000, 'Nhẫn \"BIG BUTTERFLY\" là một mẫu nhẫn thời trang nổi bật với thiết kế cánh bướm lớn, tinh tế và sang trọng. Điểm nhấn của sản phẩm là hình ảnh cánh bướm được tái tạo tỉ mỉ trên bề mặt nhẫn, tạo nên một phong cách độc đáo và cuốn hút. ', 'BIG BUTTERFLY.webp', 5),
-(8, 'Nhẫn SLEEK 8 MM (NAM)', 50, 550000, 'Nhẫn SLEEK 8 MM (NAM) là một mẫu nhẫn nam được thiết kế với phong cách hiện đại và tinh tế. Với chiều rộng 8 mm, nhẫn này có vẻ ngoài sang trọng và đẳng cấp.Thiết kế đơn giản nhưng đầy uyển chuyển, thích hợp cho những người đàn ông yêu thích sự tinh tế và hiện đại', 'SLEEK 8 MM (NAM).webp', 5),
 (9, 'Nhẫn SLEEK 6 MM (NAM)', 50, 450000, 'Nhẫn SLEEK 6 MM (NAM) là một mẫu nhẫn nam có kiểu dáng hiện đại và tinh tế. Với đường nét thiết kế mảnh mai và đơn giản. Với đường kính khoảng 6mm, nó mang lại sự mảnh mai và dễ phối hợp với các loại trang phục khác nhau.', 'SLEEK 6 MM (NAM).webp', 5),
 (10, 'Nhẫn CHAIN 01 (NAM)', 50, 390000, 'Mỗi chi tiết của nhẫn CHAIN 01 (NAM) được chăm chút tỉ mỉ, từ việc cắt gia công đến việc hoàn thiện, nhằm mang đến cho người đeo cảm giác tự tin và phong cách. Thiết kế của nhẫn thường mang đậm phong cách hiện đại và đầy cá tính, phù hợp để đeo hàng ngày ', 'CHAIN 01 (NAM).webp', 5),
 (11, 'Nhẫn FLOWING PATTERN', 50, 390000, 'Nhẫn Flowing Pattern là một mẫu nhẫn độc đáo và tinh tế, được trang trí bằng các họa tiết  tạo ra một cảm giác như dòng nước hoặc dòng chảy của thời gian. Đặc điểm nổi bật của nhẫn này là sự mềm mại và uyển chuyển của các đường cong, tạo nên một thiết kế độc đáo và thu hút sự chú ý của người nhìn', 'FLOWING PATTERN (NAM).webp', 5),
