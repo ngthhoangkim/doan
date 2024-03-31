@@ -70,6 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Thanh toán</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="apple-touch-icon" href="../public/img/logotron.png"> <!--chỉnh logo trên tiêu đề  -->
+    <link rel="shortcut icon" type="../public/image/x-icon" href="../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
+
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -97,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .left-side {
             background-color: #008B8B;
-            color: #fff;
+            color: #ECE5C7 ;
             padding: 40px;
             width: 50%;
             display: flex;
@@ -108,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .left-side h2 {
             font-size: 28px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .left-side p {
@@ -158,16 +162,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         form button {
             background-color:#008B8B;
             border: none;
-            color: #fff;
+            color: #ECE5C7 ;
             cursor: pointer;
             padding: 12px 24px;
             border-radius: 5px;
             font-size: 16px;
             transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
 
         form button:hover {
-            background-color: #3e8e41;
+            background-color: #fff;
+            color: black;
         }
 
         table {
@@ -180,6 +186,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            text-align: center;
+            font-size: 10px;
         }
 
         /* table th {
@@ -212,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $subtotal = $product['price'] * $product['quantity'];
                         $total += $subtotal;
                         echo '<tr>';
-                        echo '<td><img src="' . $product['image'] . '" alt="' . $product['name'] . '"></td>';
+                        echo '<td><img src="../admin/update_img/' . $product['image'] . '" alt="' . $product['name'] . '"></td>';
                         echo '<td>' . $product['name'] . '</td>';
                         echo '<td>' . $product['quantity'] . '</td>';
                         echo '<td>' . number_format($product['price'], 0, ',', '.') . ' đ</td>';
