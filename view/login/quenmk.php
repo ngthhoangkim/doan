@@ -110,15 +110,21 @@
         .form-control {
             width: 100%;
         }
-        .form-container1{
-           
-           background:url("../public/img/nen.jpg");
-           background-size:cover;
-          }
-      
+        body{
+         background:url("../../public/img/nen.jpg");
+         background-size:cover;
+      }
+      .form-container form {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    background-color: rgba(255, 255, 255, 0.3); /* Màu nền và độ trong suốt */
+    text-align: center;
+    width: 500px;
+}
     </style>
 </head>
-<body class="form-container1">
+<body >
     <div class="form-container border border-warning border-3">
         <form method="post" class="p-3">
             <div class="mb-3 text-center">
@@ -132,8 +138,8 @@
                 <label for="email" class="form-label">Nhập Email</label>
                 <input value="<?php if (isset($email) == true) echo $email ?>" type="email" class="form-control" id="email" name="email">
             </div>
-            <button type="submit" name="nutguiyeucau" value="nutgui" class="">Gửi yêu cầu</button>
+            <button type="submit" name="nutguiyeucau" value="nutgui" class="nut">Gửi yêu cầu</button>
         </form>
     </div>
-</bodyclass=form-container>
+</body>
 </html>

@@ -43,6 +43,10 @@
         a:hover {
             color: #0056b3;
         }
+        body{
+         background:url("../../public/img/nen.jpg");
+         background-size:cover;
+      }
     </style>
 </head>
 <body>

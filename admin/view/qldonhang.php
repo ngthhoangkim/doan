@@ -16,7 +16,7 @@
             background-color: #f2f2f2;
         }
         .sp{
-            padding: 80px 50px 50px 50px;
+            padding: 80px 50px 50px ;
         }
     </style>
 </head>
@@ -25,7 +25,6 @@
     <h2>Quản lý đơn hàng</h2>
     <table>
         <tr>
-            <th>ID</th>
             <th>Tên khách hàng</th>
             <th>Số điện thoại</th>
             <th>Email</th>
@@ -51,7 +50,6 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
                 echo "<td>" . $row['name'] . "</td>";
                 echo "<td>" . $row['number'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
@@ -61,7 +59,7 @@
                 echo "<td>" . $row['payment_status'] . "</td>";
                 echo "<td>
                     <a href='xoa_don_hang.php?order_id=" . $row['id'] . "'>Xóa</a>
-                    <a href='cap_nhat_trang_thai.php?order_id=" . $row['id'] . "'>Sắc nhận</a>
+                    <a href='cap_nhat_trang_thai.php?order_id=" . $row['id'] . "'>xác nhận</a>
                 </td>";
                 echo "</tr>";
             }
