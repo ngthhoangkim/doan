@@ -25,33 +25,7 @@ if ($conn->connect_error) {
          padding: 20px;
          box-sizing: border-box;
          }
-         .sidebar {
-         flex: 0 0 20%;
-         background-color: #ffffff;
-         border: 1px solid  #45a049;
-         border-radius: 5px;
-         padding: 10px;
-         margin-right: 20px;
-         }
-         .list_sidebar {
-         padding: 0;
-         margin: 0;
-         list-style: none;
-         }
-         .list_sidebar li {
-         margin-bottom: 10px;
-         }
-         .list_sidebar li a {
-         text-decoration: none;
-         color:  #45a049;
-         display: block;
-         padding: 8px;
-         border-radius: 5px;
-         transition: background-color 0.3s ease;
-         }
-         .list_sidebar li a:hover {
-         background-color: cadetblue;
-         }
+         
          .product_detail {
          flex: 1;
          background-color: #ffffff;
@@ -104,14 +78,7 @@ if ($conn->connect_error) {
    </head>
    <body>
       <div class="container">
-         <div class="sidebar">
-            <ul class="list_sidebar">
-               <li><a href="index.php?act=sanpham&id_type=5">Nhẫn</a></li>
-               <li><a href="index.php?act=sanpham&id_type=6">Dây chuyền</a></li>
-               <li><a href="index.php?act=sanpham&id_type=7">Vòng tay</a></li>
-               <li><a href="index.php?act=sanpham&id_type=8">Khuyên tai</a></li>
-            </ul>
-         </div>
+         
          <div class="product_detail">
             <h3>CHI TIẾT SẢN PHẨM </h3>
             <div class="hinhanh">
@@ -130,7 +97,7 @@ if ($conn->connect_error) {
                       if ($result->num_rows > 0) {
                           // Hiển thị thông tin chi tiết sản phẩm
                           $row_pro = $result->fetch_assoc();
-                          echo '<img src="../admin/update_img/'.$row_pro['image'].'" alt="Hình ảnh sản phẩm"> ';
+                          echo '<img src="admin/update_img/'.$row_pro['image'].'" alt="Hình ảnh sản phẩm"> ';
                       } else {
                           echo 'Không tìm thấy hình ảnh sản phẩm';
                       }
