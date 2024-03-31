@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2024 lúc 05:34 AM
+-- Thời gian đã tạo: Th3 31, 2024 lúc 06:02 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -35,6 +35,27 @@ CREATE TABLE `cart` (
   `qty` int(100) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `price`, `qty`) VALUES
+(73, 10, 10, 390000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `lienhe`
+--
+
+CREATE TABLE `lienhe` (
+  `id` int(11) NOT NULL,
+  `ten` varchar(255) NOT NULL,
+  `gmail` varchar(255) NOT NULL,
+  `sodt` int(10) NOT NULL,
+  `noidung` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +82,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
 (8, 10, 'nguyễn văn sơn', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 390000, '2024-03-31 05:33:04', 'pending'),
-(9, 10, 'nguyễn văn sơn', '0335678442', 'admin@gmail.com', 'cod', '360 quang trung', '1', 450000, '2024-03-31 05:33:45', 'pending');
+(9, 10, 'nguyễn văn sơn', '0335678442', 'admin@gmail.com', 'cod', '360 quang trung', '1', 450000, '2024-03-31 05:33:45', 'pending'),
+(10, 10, 'nguyễn văn sơn', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 390000, '2024-03-31 05:48:14', 'pending');
 
 -- --------------------------------------------------------
 
@@ -83,7 +105,8 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `price`, `quantity`) VALUES
 (8, 8, 6, 390000, 1),
-(9, 9, 9, 450000, 1);
+(9, 9, 9, 450000, 1),
+(10, 10, 6, 390000, 1);
 
 -- --------------------------------------------------------
 
@@ -107,8 +130,6 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `qty`, `price`, `method`, `image`, `id_type`) VALUES
 (6, 'Nhẫn 5 HEART LINE', 50, 390000, 'Nhẫn 5 Heart Line là một mẫu nhẫn độc đáo và ý nghĩa, được thiết kế với năm dòng đường cong mềm mại tạo thành hình dạng hình trái tim. Mỗi dòng đường cong tượng trưng cho một trái tim, biểu trưng cho tình yêu, sự đoàn kết và sự gắn kết.', '5 HEART LINE(1).webp', 5),
-(7, 'Nhẫn BIG BUTTERFLY', 50, 450000, 'Nhẫn \"BIG BUTTERFLY\" là một mẫu nhẫn thời trang nổi bật với thiết kế cánh bướm lớn, tinh tế và sang trọng. Điểm nhấn của sản phẩm là hình ảnh cánh bướm được tái tạo tỉ mỉ trên bề mặt nhẫn, tạo nên một phong cách độc đáo và cuốn hút. ', 'BIG BUTTERFLY.webp', 5),
-(8, 'Nhẫn SLEEK 8 MM (NAM)', 50, 550000, 'Nhẫn SLEEK 8 MM (NAM) là một mẫu nhẫn nam được thiết kế với phong cách hiện đại và tinh tế. Với chiều rộng 8 mm, nhẫn này có vẻ ngoài sang trọng và đẳng cấp.Thiết kế đơn giản nhưng đầy uyển chuyển, thích hợp cho những người đàn ông yêu thích sự tinh tế và hiện đại', 'SLEEK 8 MM (NAM).webp', 5),
 (9, 'Nhẫn SLEEK 6 MM (NAM)', 50, 450000, 'Nhẫn SLEEK 6 MM (NAM) là một mẫu nhẫn nam có kiểu dáng hiện đại và tinh tế. Với đường nét thiết kế mảnh mai và đơn giản. Với đường kính khoảng 6mm, nó mang lại sự mảnh mai và dễ phối hợp với các loại trang phục khác nhau.', 'SLEEK 6 MM (NAM).webp', 5),
 (10, 'Nhẫn CHAIN 01 (NAM)', 50, 390000, 'Mỗi chi tiết của nhẫn CHAIN 01 (NAM) được chăm chút tỉ mỉ, từ việc cắt gia công đến việc hoàn thiện, nhằm mang đến cho người đeo cảm giác tự tin và phong cách. Thiết kế của nhẫn thường mang đậm phong cách hiện đại và đầy cá tính, phù hợp để đeo hàng ngày ', 'CHAIN 01 (NAM).webp', 5),
 (11, 'Nhẫn FLOWING PATTERN', 50, 390000, 'Nhẫn Flowing Pattern là một mẫu nhẫn độc đáo và tinh tế, được trang trí bằng các họa tiết  tạo ra một cảm giác như dòng nước hoặc dòng chảy của thời gian. Đặc điểm nổi bật của nhẫn này là sự mềm mại và uyển chuyển của các đường cong, tạo nên một thiết kế độc đáo và thu hút sự chú ý của người nhìn', 'FLOWING PATTERN (NAM).webp', 5),
@@ -205,7 +226,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `address`, `password`, `user_type`, `image`) VALUES
 (9, 'admin', 'admin@gmail.com', 0, '', '21232f297a57a5a743894a0e4a801fc3', 'admin', ''),
-(10, 'nguyễn văn sơn', 'nguyenson79v79@gmail.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', '');
+(10, 'nguyễn văn sơn', 'nguyenson79v79@gmail.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', ''),
+(11, 'SON', '2254810168@vaa.edu.vn', 0, '', '202cb962ac59075b964b07152d234b70', 'user', ''),
+(12, 'hi', 'thuong@gamil.com', 0, '', '202cb962ac59075b964b07152d234b70', 'admin', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -219,6 +242,12 @@ ALTER TABLE `cart`
   ADD KEY `user_id` (`user_id`,`product_id`),
   ADD KEY `user_id_2` (`user_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Chỉ mục cho bảng `lienhe`
+--
+ALTER TABLE `lienhe`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `orders`
@@ -259,19 +288,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT cho bảng `lienhe`
+--
+ALTER TABLE `lienhe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
@@ -289,7 +324,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
