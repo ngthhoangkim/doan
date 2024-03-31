@@ -3,17 +3,17 @@
    <head>
       <title>Quản lý Liên hệ</title>
       <style>
-         body {
+        body {
          font-family: Arial, sans-serif;
          margin: 0;
          padding: 100px;
-         }
+        }
          .container {
          width: 80%;
          margin: 50px auto;
          padding: 20px;
          text-align: center; /* Thêm để căn giữa tiêu đề */
-         }
+        }
          h1 {
          text-align: center;
          margin-bottom: 20px;
@@ -56,7 +56,7 @@
          background-color: #da190b;
          }
          .container{
-         background:url("../public/img/nen.jpg");
+         /* background:url("../public/img/nen.jpg"); */
          background-size:cover;
       }
       </style>

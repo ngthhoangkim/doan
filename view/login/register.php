@@ -10,8 +10,8 @@ if(isset($_POST['submit'])){
    $cpass = md5($_POST['cpassword']);
    $user_type = $_POST['user_type'];
 
-   $select = " SELECT * FROM users WHERE email = '$email' && username = '$name' || user_type = 'admin' ";
-   $selectAdmin = "SELECT * FROM users WHERE ";
+   $select = " SELECT * FROM users WHERE email = '$email' ";
+   // $selectAdmin = "SELECT * FROM users WHERE ";
 
    $result = mysqli_query($conn, $select);
    // $resultAdmin = mysqli_query($conn, $selectAdmin);
@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $error[] = 'Password không giống bạn hãy nhập lại!';
       }else{
-         $insert = "INSERT INTO users(username, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+         $insert = "INSERT INTO users(username, email, password, user_type) VALUES('$name','$email','$pass','user')";
          mysqli_query($conn, $insert);
          header('location:login.php');
       }
@@ -215,10 +215,11 @@ if(isset($_POST['submit'])){
       <input type="email" name="email" required placeholder="Nhập email">
       <input type="password" name="password" required placeholder="Nhập password">
       <input type="password" name="cpassword" required placeholder="Nhập lại password">
-      <select name="user_type">
+      <input type="hidden" name="user_type" required placeholder="user">
+      <!-- <select name="user_type">
          <option value="user">USER</option>
          <option value="admin">ADMIN</option>
-      </select>
+      </select> -->
       <input style="color:#ECE5C7 " type="submit" name="submit" value="Đăng ký" class="form-btn">
       <p>Nếu bạn có tài khoản rồi hãy <a href="login.php">đăng nhập</a></p>
    </form>

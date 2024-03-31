@@ -362,8 +362,7 @@
                             <?php echo $product['name']; ?>
                         </td>
                         <td>
-                            <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
-                            <button type="submit" name="update">Update</button>
+                        <?php echo $product['quantity']; ?>
                         </td>
                         <td>
                             <?php echo number_format($product['price'], 0, ',', '.'); ?> đ

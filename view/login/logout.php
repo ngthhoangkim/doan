@@ -1,6 +1,6 @@
 <?php
 
-@include '../model/connectdb.php';
+@include '../../model/connectdb.php';
 
 session_start();
 session_unset();

@@ -104,6 +104,14 @@
     background-color: #bb3535;
     color: #fff
 }
+.cart i {
+    font-size: 50px;
+}
+.cart {
+    text-decoration: none;
+    color: black;
+
+}
 </style>
 </head>
 <?php
@@ -128,7 +136,7 @@
 ?>
 <body>
     <div class="container bg-white">
-        <h2>Tất cả sản phẩm</h2>
+        <a class="cart" href="view/view-cart.php"><i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i></a>
         <form action="" method="post">
             <div class="row">
                <?php foreach ($product_data as $product) { ?>

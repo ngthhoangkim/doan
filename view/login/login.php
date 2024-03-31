@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
    <link rel="shortcut icon" type="../../public/image/x-icon" href="../../public/img/logotron.png"><!--chỉnh logo trên tiêu đề  -->
    
    <style>
-      @import ur  l('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&display=swap');
       *{
          font-family: 'Roboto', sans-serif;
          margin:0; padding:0;

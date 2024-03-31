@@ -7,7 +7,6 @@
     }
 
     .qltk1 {
-        background: url("../public/img/lienhe.jpg");
         background-size: cover;
         padding-top: 100px; /* Thay đổi margin-top thành padding-top */
     }
