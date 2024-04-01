@@ -115,7 +115,7 @@ $result = $conn->query($sql);
                 echo "<div class='col-md-6'>";
                 echo "<p><strong>Total Price:</strong> " . number_format($row['total_price'], 0, ',', '.') . " VNĐ</p>";
                 echo "<p><strong>Ordered On:</strong> " . $row['placed_on'] . "</p>";
-                echo "<p><strong>Payment Status:</strong> " . $row['payment_status'] . "</p>";
+                echo "<p><strong>trạng thái đơn hàng : </strong> " . $row['payment_status'] . "</p>";
                 echo "<h4>Ordered Products:</h4>";
                 echo "<ul>";
                 $order_details = explode('|', $row['order_details']);

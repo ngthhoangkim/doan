@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Lưu đơn hàng vào bảng orders
     $placed_on = date('Y-m-d H:i:s');
-    $payment_status = 'pending'; // Tình trạng thanh toán
+    $payment_status = 'chưa giao hàng '; // Tình trạng thanh toán
 
     $sql = "INSERT INTO orders (user_id, name, number, email, method, address, total_products, total_price, placed_on, payment_status) 
             VALUES ('$user_id', '$name', '$phone', '$email', '$payment_method', '$address', '$total_products', '$total_price', '$placed_on', '$payment_status')";
