@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 02, 2024 lúc 04:09 PM
+-- Thời gian đã tạo: Th4 02, 2024 lúc 04:11 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -70,18 +70,6 @@ CREATE TABLE `orders` (
   `order_status` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`, `order_status`) VALUES
-(90, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 390000, '2024-04-01 17:21:05', 'đã giao', ''),
-(91, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 390000, '2024-04-01 17:56:43', 'đã giao', ''),
-(92, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 390000, '2024-04-02 07:50:16', 'đã giao', ''),
-(93, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '1', 250000, '2024-04-02 08:09:36', 'đã giao', ''),
-(94, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'cod', '360 quang trung', '2', 500000, '2024-04-02 08:10:08', 'đã giao', ''),
-(95, 13, 'nguyễn văn sơn ', '0335678442', 'nguyenson79v79@gmail.com', 'online', '360 quang trung', '1', 390000, '2024-04-02 15:53:15', 'chưa giao hàng ', '');
-
 -- --------------------------------------------------------
 
 --
@@ -95,19 +83,6 @@ CREATE TABLE `order_details` (
   `price` decimal(10,0) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `order_details`
---
-
-INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `price`, `quantity`) VALUES
-(110, 90, 10, 390000, 1),
-(111, 91, 11, 390000, 1),
-(112, 92, 10, 390000, 1),
-(113, 93, 14, 250000, 1),
-(114, 94, 17, 250000, 1),
-(115, 94, 18, 250000, 1),
-(116, 95, 10, 390000, 1);
 
 -- --------------------------------------------------------
 
@@ -226,10 +201,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `address`, `password`, `user_type`, `image`) VALUES
-(9, 'admin', 'admin@gmail.com', 0, '', '21232f297a57a5a743894a0e4a801fc3', 'admin', ''),
-(13, 'nguyễn văn sơn ', 'nguyenson79v79@gmail.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', ''),
-(14, 'linh', 'son@gamil.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', ''),
-(15, 'kim', 'wim@gamil.com', 0, '', '202cb962ac59075b964b07152d234b70', 'user', '');
+(9, 'admin', 'admin@gmail.com', 0, '', '21232f297a57a5a743894a0e4a801fc3', 'admin', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
