@@ -21,7 +21,8 @@ $result = mysqli_query($conn, $sql);
             font-family: 'Montserrat', sans-serif;
             background-color: #f5f5f5;
             margin: 0;
-            padding: 100px 0px 0px 0px       }
+            padding: 100px 0px 0px 0px
+        }
 
         .container {
             max-width: 1200px;
@@ -96,7 +97,7 @@ $result = mysqli_query($conn, $sql);
                                 <button type="submit">Cập nhật</button>
                             </form>
                         </td>
-                        <td><a href="order_details.php?id=<?php echo $row['id']; ?>">Xem chi tiết</a></td>
+                        <td><a href="view/order_details.php?id=<?php echo $row['id']; ?>">Xem chi tiết</a></td>
                     </tr>
                 <?php } ?>
             <?php } else { ?>
@@ -108,3 +109,6 @@ $result = mysqli_query($conn, $sql);
     </div>
 </body>
 </html>
+<?php
+mysqli_close($conn);
+?>
