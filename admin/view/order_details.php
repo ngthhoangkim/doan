@@ -23,8 +23,9 @@ $result = mysqli_query($conn, $sql);
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin: 0 auto; /* Căn giữa theo chiều ngang */
             padding: 20px;
+            width: 70%; /* Thu nhỏ form lại thành 70% */
         }
 
         h1 {
