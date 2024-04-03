@@ -49,8 +49,7 @@
        $mail->Host = 'smtp.gmail.com';  //SMTP servers
        $mail->SMTPAuth = true; // Enable authentication
        $mail->Username = 'son696552@gmail.com'; // SMTP username
-       $mail->Password = 'jfqc kebi zckx qhpc
-       ';   // SMTP password
+       $mail->Password = 'spbs vfsg zxns bndl';   // SMTP password
        $mail->SMTPSecure = 'ssl';  // encryption TLS/SSL 
        $mail->Port = 465;  // port to connect to                
        $mail->setFrom('son696552@gmail.com', 'LUXURIOUS' ); 
